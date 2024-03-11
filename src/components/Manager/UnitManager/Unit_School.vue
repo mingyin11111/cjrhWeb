@@ -195,7 +195,8 @@ export default {
       ///////////////////////////////////////////////////////////////
     },
     UpLoadSuccess(data) {
-      this.module.Logo = "/api/files/" + data.data;
+
+      this.module.Logo = "/api/files/" + data.data.split('*')[0];
     },
     Add_School() {
       this.editerdialogTitle = "添加学校";
