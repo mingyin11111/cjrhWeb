@@ -51,7 +51,14 @@ const router = new Router({
           path: '/Web/Need/NeedSubmit',
           component: () => import('@/components/Web/Need/NeedSubmit'),
         },
-        
+        {
+          path: '/Web/InformationPublish/InformationShow',
+          component: () => import('@/components/Web/InformationPublish/InformationShow'),
+        },
+        {
+          path: '/Web/InformationPublish/InformationDetail',
+          component: () => import('@/components/Web/InformationPublish/InformationDetail'),
+        },
         
       ]
     },

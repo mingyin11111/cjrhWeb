@@ -177,12 +177,9 @@
             <el-col :span="8" class="elcol-l">
               <span class="blue-dot"></span>平台公告
               <ul>
-
                 <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后  </li>
                 <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后  </li>
                 <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后  </li>
-
-
               </ul>
             </el-col>
           </el-row>
@@ -376,7 +373,7 @@ margin-left :10px;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height:35px;
-   width:400px;
+    width:100px;
   }
   .red-dot {/*红点*/
     position: relative;

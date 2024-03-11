@@ -78,14 +78,22 @@ export default {
             CurrentType:'全部',
             pageinfo: { PageSize: 10, CurrentPageNumber: 1, RecordCount: 0, PageData: [] },
             pageSizeOption: [10, 15, 20, 50, 100],
+
         };
     },
     created() {
         let urlTemp = "assets/mainpic.png";
         this.imgUrl = require("@/" + urlTemp);
         this.imgQRCode = require("@/" + "assets/qrcocedemo.png");
+       
+       
     },
     mounted() {
+        let ptype=this.$route.query.type;
+        if(this.NeedTypes.indexOf(ptype)!=-1)
+        {
+            this.CurrentType=ptype
+        }
         this.GetList(1);
     },
     methods: {

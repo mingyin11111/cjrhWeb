@@ -8,12 +8,12 @@
 
                 <el-col :span="24">
 
-                    <el-card class="box-card" style="margin-top: 15px;height: 400px;">
+                    <el-card class="box-card loginbg" style="margin-top: 15px;height: 400px;  ;">
                         <div style="display: inline-block;  width: 33%;">
-                            1
+                            &nbsp;
                         </div>
                         <div style="display:inline-block;  width: 33%;">
-                            2
+                            &nbsp;
                         </div>
                         <div style="display: inline-block;  width: 33%;">
                             <el-card shadow="never" v-loading="Login_loading">
@@ -128,5 +128,12 @@ export default {
 
 };
 </script>
-<style scoped></style>
+<style scoped>
+
+.loginbg {
+  background-image: url('../img/LoginBG.png');
+  background-size: 100% ;
+  background-repeat: no-repeat;
+}
+</style>
   
