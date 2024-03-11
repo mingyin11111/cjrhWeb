@@ -22,11 +22,12 @@
                                                     style="margin: 15px 5px; display: inline-block;width: 70px; text-align: center;padding: 3px;  color: #ff74ab;border-width: 1px;border-style: solid;border-color: #ff74ab;background-color: #ffd0e3;border-radius: 5px;">
                                                     {{ item.State }}</div>
                                             </td>
-
                                         </tr>
                                     </table>
                                 </div>
-
+                                <div v-if="pageinfo.PageData.length==0" style="width: 100%;height: 50px;background-color: antiquewhite; text-align: center;padding-top: 20px;">
+                                        暂无内容
+                                </div>
                                 <el-select v-model="pageinfo.PageSize" placeholder="请选择"
                                     style="display:block;float:right ;margin-top:5px" size="mini" @change="ChangePageSize">
                                     <el-option v-for="item in pageSizeOption" :key="item" :label="'每页' + item + '条记录'"

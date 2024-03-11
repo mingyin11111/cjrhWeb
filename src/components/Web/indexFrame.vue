@@ -16,7 +16,7 @@
                             <td align="left "> 网站名称</td>
                             <td><el-button type="text" @click="ToIndex">首页</el-button></td>
                             <td><el-button type="text" @click="ToNeeds">需求大厅</el-button></td>
-                            <td><el-button type="text">信息中心</el-button></td>
+                            <td><el-button type="text" @click="InformationShow"  >信息中心</el-button></td>
                             <td><el-button type="text">资源共享</el-button></td>
                             <td><el-button type="text">专项竞赛</el-button> </td>
                             <td align="right">
@@ -174,7 +174,11 @@ export default {
         },
         ToIndex() {
             this.$router.push({ path: '/Web/index' });
+        },
+        InformationShow() {
+            this.$router.push({ path: '/Web/InformationPublish/InformationShow' });
         }
+        
     },
     components: { VueRouter }
 };
