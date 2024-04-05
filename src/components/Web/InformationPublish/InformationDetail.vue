@@ -4,7 +4,7 @@
              
             <el-row>
                 <el-col :span="24">
-                    <div style="width: 100%; text-align: left;padding: 10px;">
+                    <div style=" text-align: left;padding: 10px;">
                        信息中心	&gt;成果展示| {{InformationModel.NeedName}} 
                     </div>
                 </el-col>
@@ -14,13 +14,13 @@
                     <div style="padding: 10px;">
                         <div>{{ InformationModel.NeedName}}</div>
                         <div>发布时间：{{ InformationModel.createdAt }}</div>
-                        <div style="width: 100%;background-color: antiquewhite;margin-top: 15px;padding: 10px;">
+                        <div style="background-color: antiquewhite;margin-top: 15px;padding: 10px;">
                             <el-carousel height="350px" style="width: 80%;margin: auto;background-color: white;">
                                 <el-carousel-item v-for="item in InformationModel.Attachment.split('|')"  :key="item">
                                     <img :src="item.split('*')[0]">
                                 </el-carousel-item>
                             </el-carousel>
-                            <div style="width: 100%; text-align: center;padding: 20px;"> 中标都作品展示【开发者：{{NeedModel.WinningOrganize}}】 </div>
+                            <div style=" text-align: center;padding: 20px;"> 中标都作品展示【开发者：{{NeedModel.WinningOrganize}}】 </div>
                         </div>
                         <div>
                              <span style="font-size: 14px; font-weight: bold; margin-top: 10px;">任务需求：</span>
