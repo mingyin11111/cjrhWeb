@@ -59,6 +59,26 @@ const router = new Router({
           path: '/Web/InformationPublish/InformationDetail',
           component: () => import('@/components/Web/InformationPublish/InformationDetail'),
         },
+        {
+          path: '/Web/Resource/ResourceList',
+          component: () => import('@/components/Web/Resource/ResourceList'),
+        },
+        {
+          path: '/Web/Resource/ReourceAdd',
+          component: () => import('@/components/Web/Resource/ReourceAdd'),
+        },
+        {
+          path: '/Web/Register/Register_Choose',
+          component: () => import('@/components/Web/Register/Register_Choose'),
+        },
+        {
+          path: '/Web/Register/Register_School',
+          component: () => import('@/components/Web/Register/Register_School'),
+        },
+        {
+          path: '/Web/Register/Register_Company',
+          component: () => import('@/components/Web/Register/Register_Company'),
+        },
         
       ]
     },
@@ -140,7 +160,10 @@ const router = new Router({
           path: '/Manager/NeedManager/NeedDetail',
           component: () => import('@/components/Manager/NeedManager/NeedDetail'),
         },
-        
+        {
+          path: '/Manager/ResourceManager/ResourceList',
+          component: () => import('@/components/Manager/ResourceManager/ResourceList'),
+        },
       ]
     }
 

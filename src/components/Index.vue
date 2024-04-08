@@ -43,7 +43,7 @@
             <i class="el-icon-menu"></i>
             <span slot="title">需求管理</span>
           </el-menu-item>
-          <el-menu-item index="/home">
+          <el-menu-item index="/Manager/ResourceManager/ResourceList">
             <i class="el-icon-document"></i>
             <span slot="title">资源共享</span>
           </el-menu-item>

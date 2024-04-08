@@ -17,7 +17,7 @@
                             <td><el-button type="text" @click="ToIndex">首页</el-button></td>
                             <td><el-button type="text" @click="ToNeeds">需求大厅</el-button></td>
                             <td><el-button type="text" @click="InformationShow"  >信息中心</el-button></td>
-                            <td><el-button type="text">资源共享</el-button></td>
+                            <td><el-button type="text" @click="ToResourceList" >资源共享</el-button></td>
                             <td><el-button type="text">专项竞赛</el-button> </td>
                             <td align="right">
                                 <table>
@@ -203,7 +203,10 @@ export default {
         },
         InformationShow() {
             this.$router.push({ path: '/Web/InformationPublish/InformationShow' });
-        }
+        },
+        ToResourceList() {
+            this.$router.push({ path: '/Web/Resource/ResourceList' });
+        },
         
     },
     components: { VueRouter }
