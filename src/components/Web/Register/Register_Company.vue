@@ -11,10 +11,10 @@
                     </div>
                     <template>
                         <el-form :model="module" :rules="rules" ref="module">
-                            <el-form-item label="学校名称" prop="Name" :label-width="formLabelWidth">
+                            <el-form-item label="企业名称" prop="Name" :label-width="formLabelWidth">
                                 <el-input v-model="module.Name" autocomplete="off"></el-input>
                             </el-form-item>
-                            <el-form-item label="学校地址" prop="Address" :label-width="formLabelWidth">
+                            <el-form-item label="企业地址" prop="Address" :label-width="formLabelWidth">
                                 <el-input v-model="module.Address" autocomplete="off"></el-input>
                             </el-form-item>
                             <el-form-item label="联系人" prop="LinkMan" :label-width="formLabelWidth">
@@ -135,11 +135,11 @@ export default {
                 if (valid) {
                     this.$axios({
                         method: "GET",
-                        url: "/api/school?Name=" + this.module.Name,
+                        url: "/api/company?Name=" + this.module.Name,
                     })
                         .then((response) => {
                             if (response.data.err == 0 && response.data.data.count > 0) {
-                                this.$message.error('该学校已存在，不能重复添加');
+                                this.$message.error('该企业已存在，不能重复添加');
                             } else {
                                 //检查用户是否存在
                                 this.checkUserIsHave();
@@ -163,19 +163,19 @@ export default {
                     if (response.data.err == 0 && response.data.data.count > 0) {
                         this.$message.error('该登录名已被使用！');
                     } else {
-                        this.doAddSchool();
+                        this.doAddCompany();
                     }
                 })
                 .catch((error) => {
                     this.$message({ type: "info", message: error });
                 });
         },
-        doAddSchool() {
+        doAddCompany() {
             this.loading = true;
             var qs = require("qs");
             this.$axios({
                 method: "post",
-                url: "/api/school",
+                url: "/api/company",
                 data: qs.stringify({
                     Name: this.module.Name,
                     Phote: this.module.Phote,
@@ -187,8 +187,8 @@ export default {
             })
                 .then((response) => {
                     if (response.data.err == 0) {
-                       let  schoolID=response.data.data.id;
-                        this.doAddMember(schoolID)
+                       let  companyid=response.data.data.id;
+                        this.doAddMember(companyid)
                     } else {
                         this.$message({
                             type: "info",
@@ -202,7 +202,7 @@ export default {
                     this.loading = false;
                 });
         },
-        doAddMember(schoolID)
+        doAddMember(companyid)
         {
             this.loading = true;
             var qs = require("qs");
@@ -216,9 +216,9 @@ export default {
                     PhoneNumber: this.module.PhoneNumber,
                     UnitName: this.module.Name,
                     State: '在职',
-                    RelationKEY: 'T_School',
-                    RelationValue: schoolID,
-                    UserType: '学校',
+                    RelationKEY: 'T_Company',
+                    RelationValue: companyid,
+                    UserType: '公司',
                     LoginPwd: '123abc',
                 }),
             })

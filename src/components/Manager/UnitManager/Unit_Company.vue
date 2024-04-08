@@ -271,7 +271,7 @@
       },
   
       deleteRow(row) {
-        this.$confirm("删除该企业，该企业下的所有用户将被同步删除，确定要删除该学校吗", "提示", {
+        this.$confirm("删除该企业，该企业下的所有用户将被同步删除，确定要删除该企业吗", "提示", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning",
