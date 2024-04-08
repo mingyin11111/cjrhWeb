@@ -1,11 +1,8 @@
 <template>
     <el-container>
         <el-main>
-
-
-
             <el-row>
-
+                <div style="height: 80px;"></div>
                 <el-col :span="24">
 
                     <el-card class="box-card loginbg" style="margin-top: 15px;height: 400px;  ;">
@@ -46,6 +43,7 @@
                             </el-card>
                         </div>
                     </el-card>
+                    <div style="height: 80px;"></div>
                 </el-col>
 
             </el-row>

@@ -2,6 +2,7 @@
     <el-container>
         <el-main>
             <el-row  >
+                <div style="height: 80px;"></div>
                 <el-col :span="24">
                     <table style="width:100%;  font-size: medium; ">
                         <tr>

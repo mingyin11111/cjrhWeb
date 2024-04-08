@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-main>
-       
+      <div style="height: 80px;"></div>
       <el-image :src="imgUrl" style="width: 100%;height: 200px;margin-bottom: 10px;" ></el-image>
       <div class="remen">
         <h2>热门服务</h2>

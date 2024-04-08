@@ -67,7 +67,7 @@
                 </el-col>
             </el-row>
 
-            <el-row style="background-color: #fbfbfb;">
+            <el-row style="background-color: #fbfbfb;border-top-style: solid;  border-top-color: rgba(224, 224, 226, 0.27);">
                 <el-col :span="2">
                     <div>&nbsp; </div>
                 </el-col>

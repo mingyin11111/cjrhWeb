@@ -5,6 +5,7 @@
         <el-main v-loading="loading">
             <el-row>
                 <el-col :span="24">
+                    <div style="height: 80px;"></div>
                     <el-image :src="imgUrl" style="width: 100%;height: 200px;" ></el-image>
                     <el-tabs v-model="activeName" @tab-click="ChangeTab" >
                         
