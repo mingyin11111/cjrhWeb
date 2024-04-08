@@ -1,24 +1,20 @@
 <template>
     <el-container>
-        
-        <el-main>
-            <el-row style="background-color: lightblue;">
-                <el-col :span="4">
+        <el-main style="padding: 0px;;">
+            <el-row style="padding-top: 5px;background-color: white;opacity: 1; position: fixed; z-index: 999999999;width: 100%;margin-top: -5px;border-bottom-style: solid;border-bottom-width: thin;border-bottom-color: #36394d;">
+                <el-col :span="2">
                     <div>&nbsp;</div>
                 </el-col>
-                <el-col :span="16">
+                <el-col :span="20">
                     <table style="width:100%; font-size: medium;">
                         <tr>
-                            <td style="width: 51px;">
-                                <img src="/api/files/1707719535452.png"
-                                    style="width:50px;height: 50px; border-radius: 25px;">
-                            </td>
-                            <td align="left "> 网站名称</td>
-                            <td><el-button type="text" @click="ToIndex">首页</el-button></td>
-                            <td><el-button type="text" @click="ToNeeds">需求大厅</el-button></td>
-                            <td><el-button type="text" @click="InformationShow"  >信息中心</el-button></td>
-                            <td><el-button type="text" @click="ToResourceList" >资源共享</el-button></td>
-                            <td><el-button type="text">专项竞赛</el-button> </td>
+                            <td style="width: 51px;"> <img :src="LogoPic" style="width:200px;  "> </td>
+                            <td style="width: 30px;">&nbsp;</td>
+                            <td><el-button type="text" style="font-size: 18px;" @click="ToIndex" >首页</el-button></td>
+                            <td><el-button type="text" style="font-size: 18px;" @click="ToNeeds">需求大厅</el-button></td>
+                            <td><el-button type="text"  style="font-size: 18px;" @click="InformationShow"  >信息中心</el-button></td>
+                            <td><el-button type="text" style="font-size: 18px;" @click="ToResourceList" >资源共享</el-button></td>
+                            <td><el-button type="text" style="font-size: 18px;" >专项竞赛</el-button> </td>
                             <td align="right">
                                 <table>
                                     <tr>
@@ -54,11 +50,11 @@
                         </tr>
                     </table>
                 </el-col>
-                <el-col :span="4">
+                <el-col :span="2">
                     <div>&nbsp;</div>
                 </el-col>
             </el-row>
-
+       
             <el-row>
                 <el-col :span="4">
                     <div>&nbsp; </div>
@@ -71,62 +67,68 @@
                 </el-col>
             </el-row>
 
-            <el-row style="background-color: #36394d;">
-                <el-col :span="4">
+            <el-row style="background-color: #fbfbfb;">
+                <el-col :span="2">
                     <div>&nbsp; </div>
                 </el-col>
-                <el-col :span="16">
-                    <table style="color: white;height: 200px;width: 100%;">
+                <el-col :span="20">
+                    <table style="color:#5e6464;width: 100%;">
                         <tr>
-                            <td style="width: 20%;" valign="top">
-                                <ul style="list-style: none;">
-                                    <li style="font-size: 20px;">关于我们</li>
-                                    <li style="font-size: 14px;margin: 10px;">平台简介</li>
-                                    <li style="font-size: 14px;margin: 10px;">平台公告</li>
-                                    <li style="font-size: 14px;margin: 10px;">联系方式</li>
-                                </ul>
+                            <td style="width: 100%;" valign="top" align="left " colspan="32">
+                                <img :src="LogoPic" style="width:150px; margin-bottom: 10px; ">
                             </td>
-                            <td style="width: 20%;" valign="top">
-                                <ul style="list-style: none;">
-                                    <li style="font-size: 20px;">交易保障</li>
-                                    <li style="font-size: 14px;margin: 10px;">担保交易</li>
-                                    <li style="font-size: 14px;margin: 10px;">公司资质</li>
-                                    <li style="font-size: 14px;margin: 10px;">支付方式</li>
-                                </ul>
+                        </tr>
+                        <tr>
+                            <td  class=""valign="top" align="left "  style="width: 50%;">
+                                与我合作
                             </td>
-                            <td valign="top">
-                                <div style="font-size: 20px;margin-top: 15px;">
-                                    关注我们
-                                </div>
-                                <div style="font-size: 14px;margin: 10px;">
-                                    <img :src="imgQRCode"
-                                        style="width: 80px;height: 80px;border-width: 1px;border-style: solid;border-color: white;" />
-                                </div>
+                            <td   valign="top" align="right " style="width: 50%;">
+                                关注我们
                             </td>
-                            <td valign="top">
-                                <div style="font-size: 20px;margin-top: 15px;">
-                                    &nbsp;
-                                </div>
-                                <div style="font-size: 14px;margin: 10px;">
+                        </tr>
+                        <tr>
+                            <td  class=""valign="top" align="left "  >
+                                 <table style="width: 100%;line-height: 30px;">
+                                    <tr>
+                                        <td >
+                                            上海公司<br/>
 
-                                    <img :src="imgQRCode"
-                                        style="width: 80px;height: 80px;border-width: 1px;border-style: solid;border-color: white;" />
-                                </div>
+                                            联系人：王女士<br/>
+
+                                            电话：17269338375<br/>
+                                            
+                                            邮箱：wangmengyuan@diamondyu.com<br/>
+
+                                            地址：上海市闵行区虹梅南路6001号东海学院传媒学院4楼<br/>
+
+                                            公司域名：https://diamondyu.com<br/>
+
+                                        </td>
+                                        <td>
+                                            无锡公司<br/>
+
+                                            史先生<br/>
+
+                                            15504444684<br/>
+
+                                            shishengyu@diamondyu.com<br/>
+
+                                            江苏省无锡市滨湖区无锡商会大厦12楼Z28<br/>
+
+                                            备案号：沪ICP备2020031101号-2<br/>
+
+                                        </td>
+                                    </tr>
+                                 </table>
                             </td>
-                            <td valign="top">
-                                <div style="font-size: 20px;margin-top: 15px;">
-                                    &nbsp;
-                                </div>
-                                <div style="font-size: 14px;margin: 10px;">
-                                    <img :src="imgQRCode"
-                                        style="width: 80px;height: 80px;border-width: 1px;border-style: solid;border-color: white;" />
-                                </div>
+                            <td   valign="top" align="left ">
+                                <img :src="imgQRCode" style="  ">
                             </td>
                         </tr>
                     </table>
 
                 </el-col>
-                <el-col :span="4">
+                <el-col :span="2">
                     <div>&nbsp;</div>
                 </el-col>
             </el-row>
@@ -145,13 +147,15 @@ export default {
             loading: true,
             imgUrl: '',
             imgQRCode: '',
-            MemberName: ''
+            MemberName: '',
+            LogoPic:'',
         };
     },
     created() {
         let urlTemp = "assets/mainpic.png";
         this.imgUrl = require("@/" + urlTemp);
-        this.imgQRCode = require("@/" + "assets/qrcocedemo.png");
+        this.imgQRCode = require("@/" + "assets/qrcocepic.png");
+        this.LogoPic=require("@/" + "assets/logo_jcjy.png");
     },
     mounted() {
         let url = document.location.href;
