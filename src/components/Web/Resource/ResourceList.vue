@@ -114,7 +114,7 @@
       };
     },
     mounted() {
-      this.GetList(1);
+      //this.GetList(1);
     },
     methods: {
       doUpdate() {
