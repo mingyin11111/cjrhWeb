@@ -28,7 +28,7 @@ axios.interceptors.request.use(
       if (!config.url.endsWith('/Login')) {
           if(localStorage.getItem('Token')!=null){
               const token=localStorage.getItem('Token')
-              config.headers.common['Authorization']=token
+              config.headers.common['token']=token
           } 
       } 
       return config;

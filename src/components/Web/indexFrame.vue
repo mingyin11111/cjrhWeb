@@ -67,72 +67,44 @@
                 </el-col>
             </el-row>
 
-            <el-row style="background-color: #fbfbfb;border-top-style: solid;  border-top-color: rgba(224, 224, 226, 0.27);">
+            <el-row style="background-color: #0168ad;border-top-style: solid;  border-top-color: #0168ad;">
                 <el-col :span="2">
                     <div>&nbsp; </div>
                 </el-col>
                 <el-col :span="20">
-                    <table style="color:#5e6464;width: 100%;">
+                    <table style="color:#0168ad;width: 100%;">
                         <tr>
-                            <td style="width: 100%;" valign="top" align="left " colspan="32">
-                                <img :src="LogoPic" style="width:150px; margin-bottom: 10px; ">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td  class=""valign="top" align="left "  style="width: 50%;">
-                                与我合作
-                            </td>
-                            <td   valign="top" align="right " style="width: 50%;">
-                                关注我们
-                            </td>
-                        </tr>
-                        <tr>
-                            <td  class=""valign="top" align="left "  >
-                                 <table style="width: 100%;line-height: 30px;">
-                                    <tr>
-                                        <td >
-                                            上海公司<br/>
-
-                                            联系人：王女士<br/>
-
-                                            电话：17269338375<br/>
-                                            
-                                            邮箱：wangmengyuan@diamondyu.com<br/>
-
-                                            地址：上海市闵行区虹梅南路6001号东海学院传媒学院4楼<br/>
-
-                                            公司域名：https://diamondyu.com<br/>
-
-                                        </td>
-                                        <td>
-                                            无锡公司<br/>
-
-                                            史先生<br/>
-
-                                            15504444684<br/>
-
-                                            shishengyu@diamondyu.com<br/>
-
-                                            江苏省无锡市滨湖区无锡商会大厦12楼Z28<br/>
-
-                                            备案号：沪ICP备2020031101号-2<br/>
-
-                                        </td>
-                                    </tr>
-                                 </table>
-                            </td>
-                            <td   valign="top" align="left ">
-                                <img :src="imgQRCode" style="  ">
+                            <td style="width: 100%;" valign="top" align="center" colspan="32">
+                                <img :src="footerPic" style="  margin-bottom: 10px; ">
                             </td>
                         </tr>
                     </table>
-
                 </el-col>
                 <el-col :span="2">
                     <div>&nbsp;</div>
                 </el-col>
             </el-row>
+            <el-row style="background-color: #363636;border-top-style: solid; border-top-width: 1px; border-top-color: white;">
+                <el-col :span="2">
+                    <div>&nbsp; </div>
+                </el-col>
+                <el-col :span="20">
+                    <table style="color:#0168ad;width: 100%;">
+                        <tr>
+                            <td style="width: 100%; color: white; font-size: 14px;padding: 10px;" valign="top" align="center" colspan="32">
+                                 
+地址：电话：021-54306082（总机）<br>
 
+Copyright @ 2024 上海市工商联信息技术商会产教融合专业委员会 版权所有      ICP备案编号：沪ICP备2020031101号-5
+
+                            </td>
+                        </tr>
+                    </table>
+                </el-col>
+                <el-col :span="2">
+                    <div>&nbsp;</div>
+                </el-col>
+            </el-row>
         </el-main>
     </el-container>
 </template>
@@ -149,21 +121,22 @@ export default {
             imgQRCode: '',
             MemberName: '',
             LogoPic:'',
+            footerPic:''
         };
     },
     created() {
         let urlTemp = "assets/mainpic.png";
         this.imgUrl = require("@/" + urlTemp);
         this.imgQRCode = require("@/" + "assets/qrcocepic.png");
-        this.LogoPic=require("@/" + "assets/logo_jcjy.png");
+        this.LogoPic=require("@/" + "assets/logo_1.jpg");
+        this.footerPic=require("@/" + "assets/footer.png");
+        
     },
     mounted() {
         let url = document.location.href;
         if (url.endsWith('/#/')) {
             this.$router.push({ path: '/Web/Index' });
         }
-
-
     },
     methods: {
         ...mapMutations(["changeToken"]),

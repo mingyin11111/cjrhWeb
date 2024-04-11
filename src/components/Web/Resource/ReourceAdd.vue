@@ -19,19 +19,8 @@
             </div>
 
             <div style="border: 1px solid #ccc;">
-                <Toolbar
-                    style="border-bottom: 1px solid #ccc"
-                    :editor="editor"
-                    :defaultConfig="toolbarConfig"
-                    :mode="mode"
-                />
-                <Editor
-                    style="height: 500px; overflow-y: hidden;"
-                    v-model="html"
-                    :defaultConfig="editorConfig"
-                    :mode="mode"
-                    @onCreated="onCreated"
-                />
+              <div id="editor"></div>
+
             </div>
 
             <template>
@@ -112,6 +101,7 @@
   
   <script>
   import Vue from 'vue'
+    //imported directly to your code by require( '@ckeditor/ckeditor5-build-[name]' ).
     
   export default {
     name: "Unit_Company",
@@ -132,6 +122,11 @@
     },
     mounted() {
       this.GetList(1);
+      ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
     },
     methods: {
       doUpdate() {
