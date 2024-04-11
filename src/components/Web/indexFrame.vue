@@ -8,6 +8,7 @@
                 <el-col :span="20">
                     <table style="width:100%; font-size: medium;">
                         <tr>
+                           
                             <td style="width: 51px;"> <img :src="LogoPic" style="width:200px;  "> </td>
                             <td style="width: 30px;">&nbsp;</td>
                             <td><el-button type="text" style="font-size: 18px;" @click="ToIndex" >首页</el-button></td>

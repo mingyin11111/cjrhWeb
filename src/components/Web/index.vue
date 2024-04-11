@@ -1,11 +1,14 @@
 <template>
   <el-container>
     <el-main>
-      <div style="height: 80px;"></div>
+      <div style="height: 70px;"></div>
       <el-image :src="imgUrl" style="width: 100%;height: 200px;margin-bottom: 10px;" ></el-image>
-      <div class="remen">
-        <h2>热门服务</h2>
-        <el-row :gutter="10" justify="space-between">
+     
+      <div style="background-color: #8cc5ff;">
+        <span style=" font-size: 38px;font-weight: bold;text-align: center;display: inline-block; width: 100%;padding: 10px;">
+          热门服务
+        </span>
+        <el-row :gutter="10" justify="space-between" style="text-align: center">
           <el-col :span="3">
             <div class="zi zi1" style="cursor: pointer;" @click="LinkTo('课程开发')"> </div>
             <h3 style="cursor: pointer;" @click="LinkTo('课程开发')">课程开发</h3>
@@ -40,7 +43,7 @@
           </el-col>
         </el-row>
       </div>
-      <div class="remen1">
+      <div style="background-color: #a0cfff; text-align: center;">
         <el-row :gutter="10" justify="space-between">
 
           <el-col :span="8" class="elcol-l">
@@ -75,11 +78,16 @@
 
 
       </div>
-      <h2>优质服务商</h2>
-      <div class="remen2">
+       
+      <div  >
+        <span style=" font-size: 38px;font-weight: bold;text-align: center;display: inline-block; width: 100%;padding: 10px;">
+          优质服务商
+        </span>
         <el-row :gutter="10" justify="space-between">
-          <el-col :span="6" class="elcol-l2" v-for="item in SchoolList" key="item">
-            <p style="text-align: left;">
+         
+          <el-col :span="6" class="elcol-l2" v-for="item in SchoolList" key="item" style="text-align: center">
+            <el-card shadow="always">
+              <p style="text-align: left;">
               <img :src="item.Logo" style=" height: 25px;width: 25px;border: 1px solid #99a9bf;border-radius: 50%;display: inline-block;align-content: center;  vertical-align: middle;">
               {{item.Name}}
             </p>
@@ -88,31 +96,22 @@
             <p>
               <i class="el-icon-user-solid"></i>{{item.LinkMan}}
             </p>
-            <p><i class="el-icon-phone"></i>{{item.Phote}}</p>
+            <p>电话：{{item.Phote}}</p>
+    </el-card>
+           
           </el-col>
            
         </el-row>
       </div>
 
-      <h2>热门任务推荐</h2>
-      <div class="remen3">
-
-        <el-row :gutter="10" justify="space-between">
-
+       <div style="height: 10px;"></div>
+      <div  style="background-color: #8cc5ff;">
+        <span style=" font-size: 38px;font-weight: bold;text-align: center;display: inline-block; width: 100%;padding: 10px;">
+          热门任务推荐
+        </span>
+        <el-row :gutter="10" justify="space-between" style="margin: 0px;padding: 0px;">
           <el-col :span="8" class="elcol-l">
-            <div class="div11">课程开发</div>
-            <div class="circle circle::before divr"></div>
-            <ul>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-            </ul>
-
-          </el-col>
-          <el-col :span="8" class="elcol-l">
-            <div class="div11">虚拟仿真</div>
-            <div class="circle circle::before divr"></div>
-
+            <div  style="font-size: 20px;font-weight: bold;" >课程开发</div>
             <ul>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
@@ -120,11 +119,16 @@
             </ul>
           </el-col>
           <el-col :span="8" class="elcol-l">
-            <div class="div11">微课制作</div>
-            <div class="circle circle::before divr"></div>
-
+            <div  style="font-size: 20px;font-weight: bold;" >虚拟仿真</div>
             <ul>
-
+              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
+              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
+              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
+            </ul>
+          </el-col>
+          <el-col :span="8" class="elcol-l">
+            <div  style="font-size: 20px;font-weight: bold;" >微课制作</div>
+            <ul>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
@@ -134,21 +138,8 @@
           </el-col>
         </el-row>
         <el-row :gutter="10" justify="space-between">
-
           <el-col :span="8" class="elcol-l">
-            <div class="div11">课程开发</div>
-            <div class="circle circle::before divr"></div>
-            <ul>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-            </ul>
-
-          </el-col>
-          <el-col :span="8" class="elcol-l">
-            <div class="div11">虚拟仿真</div>
-            <div class="circle circle::before divr"></div>
-
+            <div  style="font-size: 20px;font-weight: bold;" >课程开发</div>
             <ul>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
@@ -156,16 +147,19 @@
             </ul>
           </el-col>
           <el-col :span="8" class="elcol-l">
-            <div class="div11">微课制作</div>
-            <div class="circle circle::before divr"></div>
-
+            <div  style="font-size: 20px;font-weight: bold;" >虚拟仿真</div>
             <ul>
-
+              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
+              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
+              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
+            </ul>
+          </el-col>
+          <el-col :span="8" class="elcol-l">
+            <div  style="font-size: 20px;font-weight: bold;" >微课制作</div>
+            <ul>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
-
-
             </ul>
           </el-col>
         </el-row>
@@ -578,11 +572,7 @@ p {
   width: 100%;
 }
 
-.el-main {
-  background-color: #E9EEF3;
-  color: #333;
-  text-align: center;
-}
+ 
 
 .el-footer {
   background-color: #B3C0D1;
