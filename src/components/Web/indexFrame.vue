@@ -1,7 +1,7 @@
 <template>
     <el-container>
         <el-main style="padding: 0px;;">
-            <el-row style="padding-top: 5px;background-color: white;opacity: 1; position: fixed; z-index: 999999999;width: 100%;margin-top: -5px;border-bottom-style: solid;border-bottom-width: thin;border-bottom-color: #36394d;">
+            <el-row style="padding-top: 5px;background-color: white;opacity: 1; position: fixed; z-index: 200;width: 100%;margin-top: -5px;border-bottom-style: solid;border-bottom-width: thin;border-bottom-color: #36394d;">
                 <el-col :span="2">
                     <div>&nbsp;</div>
                 </el-col>

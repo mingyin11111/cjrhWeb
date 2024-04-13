@@ -13,8 +13,6 @@
                   padding-bottom: 10px;
                   cursor: pointer;
                 ">
-                <el-button type="primary" size="mini" @click="Add_Company">添加</el-button>
-  
               </div>
             </div>
             <template>
@@ -23,22 +21,31 @@
                 :tree-props="{ children: 'children', hasChildren: 'hasChildren' }" v-loading="loading"
                 element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading"
                 element-loading-background="rgba(0, 0, 0, 0.8)">
-                <el-table-column prop="Name" label="企业名称"> </el-table-column>
-                <el-table-column prop="Memo" label="简介"> </el-table-column>
-                <el-table-column prop="LinkMan" label="联系人" width="150"> </el-table-column>
-                <el-table-column prop="Phone" label="联系电话" width="150"> </el-table-column>
-                <el-table-column prop="Logo" label="Logo" width="120">
+                <el-table-column prop="封面" label="封面" width="120">
                   <template slot-scope="scope">
                     <el-image
                       style="width: 100px; height: 100px;border-style: solid;border-width: 1px;border-color: #99a9bf;"
-                      :src="scope.row.Logo" fit="scale-down"></el-image>
+                      :src="scope.row.Attachment.split('*')[0]" fit="scale-down"></el-image>
+                  </template>
+                </el-table-column>
+                <el-table-column prop="Title" label="标题">
+                  <template slot-scope="scope">
+                     {{formatLen(scope.row.Title,130)}}
+                  </template>
+                </el-table-column>
+                <el-table-column prop="Type" label="类型"  width="150"> </el-table-column>
+                <el-table-column prop="Content" label="内容"> 
+                  <template slot-scope="scope">
+                    {{formatLen(scope.row.Content,130)}}
+                  </template>
+                </el-table-column>
+                <el-table-column prop="createdAt" label="发布日期"  width="150"> 
+                  <template slot-scope="scope">
+                    {{formatDate(scope.row.createdAt)}}
                   </template>
                 </el-table-column>
                 <el-table-column fixed="right" label="操作" width="150" align="center">
                   <template slot-scope="scope">
-                    <el-button @click="Edit_Company(scope.row)" type="text" size="medium">
-                      <i class="el-icon-edit">编辑</i>
-                    </el-button>
                     <el-button @click="deleteRow(scope.row)" type="text" size="medium">
                       <i class="el-icon-delete-solid">删除</i>
                     </el-button>
@@ -58,39 +65,7 @@
             </div>
           </el-col>
         </el-row>
-  
-        <el-dialog :title="editerdialogTitle" :visible.sync="editerdialogVisible">
-          <el-form :model="module">
-            <el-form-item label="*企业名称" :label-width="formLabelWidth">
-              <el-input v-model="module.Name" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="企业地址" :label-width="formLabelWidth">
-              <el-input v-model="module.Address" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="联系人" :label-width="formLabelWidth">
-              <el-input v-model="module.LinkMan" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="联系人电话" :label-width="formLabelWidth">
-              <el-input v-model="module.Phone" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="简介" :label-width="formLabelWidth">
-              <el-input type="textarea" :rows="3" placeholder="请输入简介" v-model="module.Memo"></el-input>
-            </el-form-item>
-            <el-form-item label="Logo" :label-width="formLabelWidth">
-              <el-upload class="avatar-uploader" action="/api/upload/fileupload" :show-file-list="false"
-                :on-success="UpLoadSuccess"  >
-                <img v-if="module.Logo" :src="module.Logo" class="avatar">
-                <i v-else class="el-icon-plus avatar-uploader-icon"
-                  style=" border-style: solid;    border-color: #a69fe2;    border-width: 1px;"></i>
-              </el-upload>
-            </el-form-item>
-          </el-form>
-          <div slot="footer" class="dialog-footer">
-            <el-button @click="editerdialogVisible = false">取 消</el-button>
-            <el-button v-if="editerdialogTitle === '编辑'" type="primary" @click="doUpdate">确 定</el-button>
-            <el-button v-if="editerdialogTitle != '编辑'" type="primary" @click="doCheckAdd">确 定</el-button>
-          </div>
-        </el-dialog>
+   
       </el-main>
     </el-container>
   </template>
@@ -117,6 +92,26 @@
       this.GetList(1);
     },
     methods: {
+      formatDate: function (dt) {
+            dt = dt + "";
+            if (dt == "" || dt == "null") {
+                return "";
+            }
+            var t = new Date(dt);
+            if (t.getFullYear() + "" == "NaN") return "";
+            return t.getFullYear() + "-" + (t.getMonth() + 1) + "-" + (t.getDate()) + " "+(t.getHours())+":"+t.getMinutes()+":"+t.getMinutes();
+        },
+      formatLen: function (str, len) {
+                    if (str == null)
+                        return "";
+                    var len11 = str.length; //row 表示一行数据,
+                    if (len11 > len) {
+                        return str.substring(0, len) + "...";
+                    }
+                    else {
+                        return str;
+                    }
+                },
       doUpdate() {
         var _this = this;
         var qs = require("qs");
@@ -172,7 +167,7 @@
         var qs = require("qs");
         this.$axios({
           method: "get",
-          url: "/api/company?page=" + pageNumber + "&pageSize=" + this.pageinfo.PageSize,
+          url: "/api/resource?page=" + pageNumber + "&pageSize=" + this.pageinfo.PageSize,
           data: qs.stringify({
           }),
         })
@@ -271,13 +266,13 @@
       },
   
       deleteRow(row) {
-        this.$confirm("删除该企业，该企业下的所有用户将被同步删除，确定要删除该学校吗", "提示", {
+        this.$confirm("确定要删除该资源吗？", "提示", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning",
           center: true,
         }).then(() => {
-          this.deleteCompany(row);
+          this.deleteResourc(row);
         })
           .catch(() => {
             this.$message({
@@ -286,12 +281,12 @@
             });
           });
       },
-      deleteCompany(row) {
+      deleteResourc(row) {
         this.loading = true;
         var qs = require("qs");
         this.$axios({
           method: "DELETE",
-          url: "/api/company/" + row.id,
+          url: "/api//resource/" + row.id,
         })
           .then((response) => {
             if (response.data.err == 0) {

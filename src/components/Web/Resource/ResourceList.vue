@@ -18,34 +18,31 @@
   
               </div>
             </div>
+             
             <template>
-              <el-table :data="pageinfo.PageData" style="width: 100%" row-key="id" :row-style="rowStyle"
-                :cellStyle="cellStyle" border default-expand-all highlight-current-row @current-change="handleCurrentChange"
-                :tree-props="{ children: 'children', hasChildren: 'hasChildren' }" v-loading="loading"
-                element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading"
-                element-loading-background="rgba(0, 0, 0, 0.8)">
-                <el-table-column prop="Name" label="企业名称"> </el-table-column>
-                <el-table-column prop="Memo" label="简介"> </el-table-column>
-                <el-table-column prop="LinkMan" label="联系人" width="150"> </el-table-column>
-                <el-table-column prop="Phone" label="联系电话" width="150"> </el-table-column>
-                <el-table-column prop="Logo" label="Logo" width="120">
-                  <template slot-scope="scope">
-                    <el-image
-                      style="width: 100px; height: 100px;border-style: solid;border-width: 1px;border-color: #99a9bf;"
-                      :src="scope.row.Logo" fit="scale-down"></el-image>
-                  </template>
-                </el-table-column>
-                <el-table-column fixed="right" label="操作" width="150" align="center">
-                  <template slot-scope="scope">
-                    <el-button @click="Edit_Company(scope.row)" type="text" size="medium">
-                      <i class="el-icon-edit">编辑</i>
-                    </el-button>
-                    <el-button @click="deleteRow(scope.row)" type="text" size="medium">
-                      <i class="el-icon-delete-solid">删除</i>
-                    </el-button>
-                  </template>
-                </el-table-column>
-              </el-table>
+              <div v-for="item in pageinfo.PageData">
+                <table style="width: 100%;">
+                  <tr>
+                    <td style="width: 150px;height: 150px;">
+                        <img @click="ViewResource(item)" v-if="item.Attachment.length>0" :src="item.Attachment.split('*')[0]" style="cursor: pointer; width: 150px;height: 150px;">
+                    </td>
+                    <td valign="top">
+                      <span  @click="ViewResource(item)" style="display: flex ;padding:10px;font-size: 16px;font-weight: bold;overflow: hidden;cursor: pointer;">
+                        {{ item.Title }}
+                      </span>
+                     <div style="padding-left:10px;height: 85px;  display: inline-block;  width: 100%;   overflow: hidden;  text-overflow: ellipsis; "  >
+                      {{ item.Content }}
+                     </div>
+                     <div style="height: 20px;font-size: 14px;padding-left:10px">
+                       发布时间：{{formatDate(item.createdAt)}}
+                     </div>
+                    </td>
+                  </tr>
+                </table>
+                <div style="height: 1px;border-bottom-style: dashed;border-bottom-width: 1px;"></div>
+              </div>
+
+               
             </template>
             <el-select v-model="pageinfo.PageSize" placeholder="请选择" style="display:block;float:right ;margin-top:5px"
               size="mini" @change="ChangePageSize">
@@ -115,9 +112,13 @@
       };
     },
     mounted() {
-      //this.GetList(1);
+      this.GetList(1);
     },
     methods: {
+      ViewResource(item) {
+        this.$router.push({ path: '/Web/Resource/ResourceView', query: { id: item.id } })
+      },
+
       doUpdate() {
         var _this = this;
         var qs = require("qs");
@@ -173,7 +174,7 @@
         var qs = require("qs");
         this.$axios({
           method: "get",
-          url: "/api/company?page=" + pageNumber + "&pageSize=" + this.pageinfo.PageSize,
+          url: "/api//resource?page=" + pageNumber + "&pageSize=" + this.pageinfo.PageSize,
           data: qs.stringify({
           }),
         })
@@ -231,6 +232,15 @@
         this.$message({ type: "info", message: error });
       });
     },
+    formatDate: function (dt) {
+            dt = dt + "";
+            if (dt == "" || dt == "null") {
+                return "";
+            }
+            var t = new Date(dt);
+            if (t.getFullYear() + "" == "NaN") return "";
+            return t.getFullYear() + "-" + (t.getMonth() + 1) + "-" + (t.getDate()) + " "+(t.getHours())+":"+t.getMinutes()+":"+t.getMinutes();
+        },
       doAdd() {
         this.loading = true;
         var qs = require("qs");

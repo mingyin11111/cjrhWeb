@@ -64,6 +64,10 @@ const router = new Router({
           component: () => import('@/components/Web/Resource/ResourceList'),
         },
         {
+          path: '/Web/Resource/ResourceView',
+          component: () => import('@/components/Web/Resource/ResourceView'),
+        },
+        {
           path: '/Web/Resource/ReourceAdd',
           component: () => import('@/components/Web/Resource/ReourceAdd'),
         },
