@@ -60,6 +60,15 @@ const router = new Router({
           component: () => import('@/components/Web/InformationPublish/InformationDetail'),
         },
         {
+          path: '/Web/InformationPublish/InformationDetail_School',
+          component: () => import('@/components/Web/InformationPublish/InformationDetail_School'),
+        },
+        {
+          path: '/Web/InformationPublish/InformationDetail_Company',
+          component: () => import('@/components/Web/InformationPublish/InformationDetail_Company'),
+        },
+        
+        {
           path: '/Web/Resource/ResourceList',
           component: () => import('@/components/Web/Resource/ResourceList'),
         },

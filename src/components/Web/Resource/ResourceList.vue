@@ -20,7 +20,11 @@
             </div>
              
             <template>
-              <div v-for="item in pageinfo.PageData">
+              <div style="height: 200px;" v-if="loading" v-loading="loading">
+
+                 
+              </div>
+              <div v-for="item in pageinfo.PageData" >
                 <table style="width: 100%;">
                   <tr>
                     <td style="width: 150px;height: 150px;">
@@ -186,6 +190,7 @@
             }
             else {
               this.$message.error("错误：" + res.data.err);
+              this.loading = false;
             }
   
           })
