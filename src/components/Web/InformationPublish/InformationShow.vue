@@ -131,7 +131,7 @@ export default {
     name: "NeedList",
     data() {
         return {
-            activeName: '成果展示',
+            activeName: '成员-学校',
             loading: true,
             imgUrl: '',
             imgQRCode: '',
@@ -147,7 +147,7 @@ export default {
         this.imgQRCode = require("@/" + "assets/qrcocedemo.png");
     },
     mounted() {
-        this.GetInformationList(1);
+        this.changePage(1);
     },
     methods: {
         ChangeTab()
