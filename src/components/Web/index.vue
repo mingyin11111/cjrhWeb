@@ -2,10 +2,18 @@
   <el-container>
     <el-main>
       <div style="height: 70px;"></div>
-      <el-image :src="imgUrl" style="width: 100%;height: 200px;margin-bottom: 10px;" ></el-image>
-     
+      <el-carousel indicator-position="outside">
+        <el-carousel-item key="item1">
+          <el-image :src="imgUrl" style="width: 100%;height: 300px;margin-bottom: 10px;"></el-image>
+        </el-carousel-item>
+        <el-carousel-item key="item2">
+          <el-image :src="imgUrl2" style="width: 100%;height: 300px;margin-bottom: 10px;"></el-image>
+        </el-carousel-item>
+      </el-carousel>
+ 
       <div style="background-color: #8cc5ff;">
-        <span style=" font-size: 38px;font-weight: bold;text-align: center;display: inline-block; width: 100%;padding: 10px;">
+        <span
+          style=" font-size: 38px;font-weight: bold;text-align: center;display: inline-block; width: 100%;padding: 10px;">
           热门服务
         </span>
         <el-row :gutter="10" justify="space-between" style="text-align: center">
@@ -30,7 +38,7 @@
             <h3 style="cursor: pointer;" @click="LinkTo('实训室建设')">实训室建设</h3>
           </el-col>
           <el-col :span="3">
-            <div class="zi zi6" style="cursor: pointer;" @click="LinkTo('智能硬件')"> </div> 
+            <div class="zi zi6" style="cursor: pointer;" @click="LinkTo('智能硬件')"> </div>
             <h3 style="cursor: pointer;" @click="LinkTo('智能硬件')">智能硬件</h3>
           </el-col>
           <el-col :span="3">
@@ -78,40 +86,44 @@
 
 
       </div>
-       
-      <div  >
-        <span style=" font-size: 38px;font-weight: bold;text-align: center;display: inline-block; width: 100%;padding: 10px;">
+
+      <div>
+        <span
+          style=" font-size: 38px;font-weight: bold;text-align: center;display: inline-block; width: 100%;padding: 10px;">
           优质服务商
         </span>
         <el-row :gutter="10" justify="space-between">
-         
+
           <el-col :span="6" class="elcol-l2" v-for="item in SchoolList" key="item" style="text-align: center">
             <el-card shadow="always">
-              <p style="text-align: left;">
-              <img :src="item.Logo" style=" height: 25px;width: 25px;border: 1px solid #99a9bf;border-radius: 50%;display: inline-block;align-content: center;  vertical-align: middle;">
-              {{item.Name}}
-            </p>
-            <img :src="item.Logo" style=" height: 150px;  margin-top: 8px;  width: 260px;  border: 1px solid #99a9bf;  border-radius: 5px;  align-content: center;  background-color: blueviolet;  display: inline-block;">
-            <p>{{subStr(item.Memo,12)}}</p>
-            <p>
-              <i class="el-icon-user-solid"></i>{{item.LinkMan}}
-            </p>
-            <p>电话：{{item.Phote}}</p>
-    </el-card>
-           
+              <p style="text-align: left;cursor:pointer;" @click="ToInformationDetail_School(item)">
+                <img :src="item.Logo"
+                  style=" height: 25px;width: 25px;border: 1px solid #99a9bf;border-radius: 50%;display: inline-block;align-content: center;  vertical-align: middle;">
+                {{ item.Name }}
+              </p>
+              <img :src="item.Logo" @click="ToInformationDetail_School(item)"
+                style="cursor:pointer; height: 150px;  margin-top: 8px;  width: 260px;  border: 1px solid #99a9bf;  border-radius: 5px;  align-content: center;  background-color: blueviolet;  display: inline-block;">
+              <p>{{ subStr(item.Memo, 12) }}</p>
+              <p>
+                <i class="el-icon-user-solid"></i>{{ item.LinkMan }}
+              </p>
+              <p>电话：{{ item.Phote }}</p>
+            </el-card>
+
           </el-col>
-           
+
         </el-row>
       </div>
 
-       <div style="height: 10px;"></div>
-      <div  style="background-color: #8cc5ff;">
-        <span style=" font-size: 38px;font-weight: bold;text-align: center;display: inline-block; width: 100%;padding: 10px;">
+      <div style="height: 10px;"></div>
+      <div style="background-color: #8cc5ff;">
+        <span
+          style=" font-size: 38px;font-weight: bold;text-align: center;display: inline-block; width: 100%;padding: 10px;">
           热门任务推荐
         </span>
         <el-row :gutter="10" justify="space-between" style="margin: 0px;padding: 0px;">
           <el-col :span="8" class="elcol-l">
-            <div  style="font-size: 20px;font-weight: bold;" >课程开发</div>
+            <div style="font-size: 20px;font-weight: bold;">课程开发</div>
             <ul>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
@@ -119,7 +131,7 @@
             </ul>
           </el-col>
           <el-col :span="8" class="elcol-l">
-            <div  style="font-size: 20px;font-weight: bold;" >虚拟仿真</div>
+            <div style="font-size: 20px;font-weight: bold;">虚拟仿真</div>
             <ul>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
@@ -127,7 +139,7 @@
             </ul>
           </el-col>
           <el-col :span="8" class="elcol-l">
-            <div  style="font-size: 20px;font-weight: bold;" >微课制作</div>
+            <div style="font-size: 20px;font-weight: bold;">微课制作</div>
             <ul>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
@@ -139,7 +151,7 @@
         </el-row>
         <el-row :gutter="10" justify="space-between">
           <el-col :span="8" class="elcol-l">
-            <div  style="font-size: 20px;font-weight: bold;" >课程开发</div>
+            <div style="font-size: 20px;font-weight: bold;">课程开发</div>
             <ul>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
@@ -147,7 +159,7 @@
             </ul>
           </el-col>
           <el-col :span="8" class="elcol-l">
-            <div  style="font-size: 20px;font-weight: bold;" >虚拟仿真</div>
+            <div style="font-size: 20px;font-weight: bold;">虚拟仿真</div>
             <ul>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
@@ -155,7 +167,7 @@
             </ul>
           </el-col>
           <el-col :span="8" class="elcol-l">
-            <div  style="font-size: 20px;font-weight: bold;" >微课制作</div>
+            <div style="font-size: 20px;font-weight: bold;">微课制作</div>
             <ul>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
               <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
@@ -183,60 +195,63 @@ export default {
     return {
       loading: true,
       imgUrl: '',
+      imgUrl2:'',
       imgQRCode: '',
-      SchoolList:[],
+      SchoolList: [],
     };
   },
   created() {
     let urlTemp = "components/img/bg.jpg";
     this.imgUrl = require("@/" + urlTemp);
+    this.imgUrl2 = require("@/components/img/bg2.jpg");
+   
     this.imgQRCode = require("@/" + "assets/qrcocedemo.png");
   },
   mounted() {
     this.GetSchoolList();
   },
   methods: {
-    subStr(str,len)
-    {
-        if(str.length<=len)
-        {
-          return str;
-        }
-        else{
-           return  str.substring(0,len)+'...';
-        }
+    subStr(str, len) {
+      if (str.length <= len) {
+        return str;
+      }
+      else {
+        return str.substring(0, len) + '...';
+      }
     },
     ToLogin() {
       this.$router.push({ path: '/Web/Login' });
     },
     LinkTo(str) {
       this.$router.push({ path: '/Web/Need/NeedList', query: { type: str } })
-    }
-    ,
-    GetSchoolList()
-    {
-           this.loading = true;
-            var qs = require("qs");
-            this.$axios({
-                method: "get",
-                url: "/api/school?page=1&pageSize=4",
-                data: qs.stringify({
-                }),
-            })
-                .then((res) => {
-                    if (res.data.err == 0) {
-                         this.SchoolList = res.data.data.rows;
-                        this.loading = false;
-                    }
-                    else {
-                        this.$message.error("错误：" + res.data.err);
-                    }
-                })
-                .catch((error) => {
-                    this.$message.error("出错！" + error);
-                    console.log(error);
-                    this.loading = false;
-                });
+    },
+    ToInformationDetail_School(item) {
+      this.$router.push({ path: '/Web/InformationPublish/InformationDetail_School', query: { id: item.id } })
+    },
+
+    GetSchoolList() {
+      this.loading = true;
+      var qs = require("qs");
+      this.$axios({
+        method: "get",
+        url: "/api/school?page=1&pageSize=4",
+        data: qs.stringify({
+        }),
+      })
+        .then((res) => {
+          if (res.data.err == 0) {
+            this.SchoolList = res.data.data.rows;
+            this.loading = false;
+          }
+          else {
+            this.$message.error("错误：" + res.data.err);
+          }
+        })
+        .catch((error) => {
+          this.$message.error("出错！" + error);
+          console.log(error);
+          this.loading = false;
+        });
     }
   },
   components: { VueRouter }
@@ -572,7 +587,7 @@ p {
   width: 100%;
 }
 
- 
+
 
 .el-footer {
   background-color: #B3C0D1;
