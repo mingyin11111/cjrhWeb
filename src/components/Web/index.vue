@@ -42,16 +42,16 @@
             <h3 style="cursor: pointer;" @click="LinkTo('智能硬件')">智能硬件</h3>
           </el-col>
           <el-col :span="3">
-            <div class="zi zi7" style="cursor: pointer;" @click="LinkTo('其它')"> </div>
-            <h3 style="cursor: pointer;" @click="LinkTo('其它')">ppt制作</h3>
+            <div class="zi zi7" style="cursor: pointer;" @click="LinkTo('其他')"> </div>
+            <h3 style="cursor: pointer;" @click="LinkTo('其他')">ppt制作</h3>
           </el-col>
           <el-col :span="3">
-            <div class="zi zi8" style="cursor: pointer;" @click="LinkTo('其它')"> </div>
-            <h3 style="cursor: pointer;" @click="LinkTo('其它')">视频制作</h3>
+            <div class="zi zi8" style="cursor: pointer;" @click="LinkTo('其他')"> </div>
+            <h3 style="cursor: pointer;" @click="LinkTo('其他')">视频制作</h3>
           </el-col>
         </el-row>
       </div>
-      <div style="background-color: #a0cfff; text-align: center;">
+      <div style="background-color: #a0cfff; text-align: center; display: none;">
         <el-row :gutter="10" justify="space-between">
 
           <el-col :span="8" class="elcol-l">
@@ -94,20 +94,20 @@
         </span>
         <el-row :gutter="10" justify="space-between">
 
-          <el-col :span="6" class="elcol-l2" v-for="item in SchoolList" key="item" style="text-align: center">
+          <el-col :span="6" class="elcol-l2" v-for="item in SchoolList" key="item" style="text-align: center;">
             <el-card shadow="always">
               <p style="text-align: left;cursor:pointer;" @click="ToInformationDetail_School(item)">
                 <img :src="item.Logo"
                   style=" height: 25px;width: 25px;border: 1px solid #99a9bf;border-radius: 50%;display: inline-block;align-content: center;  vertical-align: middle;">
-                {{ item.Name }}
+                  <el-link :underline="false" style="font-size: 16px;">{{ item.Name }}</el-link>
               </p>
               <img :src="item.Logo" @click="ToInformationDetail_School(item)"
-                style="cursor:pointer; height: 150px;  margin-top: 8px;  width: 260px;  border: 1px solid #99a9bf;  border-radius: 5px;  align-content: center;  background-color: blueviolet;  display: inline-block;">
-              <p>{{ subStr(item.Memo, 12) }}</p>
-              <p>
+                style="cursor:pointer; height: 180px;  margin-top: 8px;  width: 180px;  border: 1px solid #99a9bf;  border-radius: 5px;  align-content: center;  background-color: blueviolet;  display: inline-block;">
+              <p style="color: #606266;">{{ subStr(item.Memo, 12) }}</p>
+              <p style="color: #8c6266;">
                 <i class="el-icon-user-solid"></i>{{ item.LinkMan }}
               </p>
-              <p>电话：{{ item.Phote }}</p>
+              <p style="color: #8c6266;">电话：{{ item.Phote }}</p>
             </el-card>
 
           </el-col>
@@ -125,61 +125,50 @@
           <el-col :span="8" class="elcol-l">
             <div style="font-size: 20px;font-weight: bold;">课程开发</div>
             <ul>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
+              <li v-for="item4 in List_KeChengKaiFa" :key="item4"><el-link :underline="false"  @click="ToIneedDetail(item4)"  >{{item4.Title}}</el-link></li>
             </ul>
           </el-col>
           <el-col :span="8" class="elcol-l">
             <div style="font-size: 20px;font-weight: bold;">虚拟仿真</div>
             <ul>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
+              <li v-for="item5 in List_XuNiFangZhen" :key="item5"><el-link :underline="false"  @click="ToIneedDetail(item5)"  >{{item5.Title}}</el-link></li>
             </ul>
           </el-col>
           <el-col :span="8" class="elcol-l">
             <div style="font-size: 20px;font-weight: bold;">微课制作</div>
             <ul>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
-
-
+              <li v-for="item6 in List_WeiKeZhiZuo" :key="item6">
+                <el-link :underline="false"  @click="ToIneedDetail(item6)"  >{{item6.Title}}</el-link> </li>
             </ul>
           </el-col>
         </el-row>
         <el-row :gutter="10" justify="space-between">
           <el-col :span="8" class="elcol-l">
-            <div style="font-size: 20px;font-weight: bold;">课程开发</div>
+            <div style="font-size: 20px;font-weight: bold;">教师教学能力大赛</div>
             <ul>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
+              <li v-for="item7 in List_JiaoXueNengLi" :key="item7">
+                <el-link :underline="false"  @click="ToIneedDetail(item7)"  >{{item7.Title}}</el-link>
+               </li>
             </ul>
           </el-col>
           <el-col :span="8" class="elcol-l">
-            <div style="font-size: 20px;font-weight: bold;">虚拟仿真</div>
+            <div style="font-size: 20px;font-weight: bold;">实训室建设</div>
             <ul>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
+              <li v-for="item8 in List_ShiXunShiJianShe" :key="item8">
+                <el-link :underline="false"  @click="ToIneedDetail(item8)"  >{{item8.Title}}</el-link>
+                </li>
             </ul>
           </el-col>
           <el-col :span="8" class="elcol-l">
-            <div style="font-size: 20px;font-weight: bold;">微课制作</div>
+            <div style="font-size: 20px;font-weight: bold;">其它类型</div>
             <ul>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
+              <li v-for="item9 in List_PPTZhiZuo" :key="item9">
+                <el-link :underline="false"  @click="ToIneedDetail(item9)"  >{{item9.Title}}</el-link>
+                </li>
             </ul>
           </el-col>
         </el-row>
-
-
-
-
-
+ 
 
       </div>
     </el-main>
@@ -198,6 +187,14 @@ export default {
       imgUrl2:'',
       imgQRCode: '',
       SchoolList: [],
+      List_KeChengKaiFa:[],
+      List_XuNiFangZhen:[],
+      List_WeiKeZhiZuo:[],
+      List_JiaoXueNengLi:[],
+      List_ShiXunShiJianShe:[],
+      List_ZhiNengYingJian:[],
+      List_PPTZhiZuo:[],
+      List_ShiPinZhiZuo:[],
     };
   },
   created() {
@@ -209,8 +206,159 @@ export default {
   },
   mounted() {
     this.GetSchoolList();
+    this.GetList_KeChengKaiFa();
+    this.GetList_XuNiFangZhen();
+    this.GetList_WeiKeZhiZuo();
+    this.GetList_JiaoXueNengLi();
+    this.GetList_ShiXunShiJianShe();
+    this.GetList_PPTZhiZuo();
+    
   },
   methods: {
+    GetList_PPTZhiZuo( ) {
+      this.loading = true;
+      var qs = require("qs");
+      this.$axios({
+        method: "get",
+        url: "/api/need?page=1&pageSize=5&StepNumber=1&Type=其他",
+        data: qs.stringify({
+        }),
+      })
+        .then((res) => {
+          if (res.data.err == 0) {
+            this.List_PPTZhiZuo = res.data.data.rows;
+            this.loading = false;
+          }
+          else {
+            this.$message.error("错误：" + res.data.err);
+          }
+        })
+        .catch((error) => {
+          this.$message.error("出错！" + error);
+          console.log(error);
+          this.loading = false;
+        });
+    },
+    GetList_ShiXunShiJianShe( ) {
+      this.loading = true;
+      var qs = require("qs");
+      this.$axios({
+        method: "get",
+        url: "/api/need?page=1&pageSize=5&StepNumber=1&Type=实训室建设",
+        data: qs.stringify({
+        }),
+      })
+        .then((res) => {
+          if (res.data.err == 0) {
+            this.List_ShiXunShiJianShe = res.data.data.rows;
+            this.loading = false;
+          }
+          else {
+            this.$message.error("错误：" + res.data.err);
+          }
+        })
+        .catch((error) => {
+          this.$message.error("出错！" + error);
+          console.log(error);
+          this.loading = false;
+        });
+    },
+    GetList_JiaoXueNengLi( ) {
+      this.loading = true;
+      var qs = require("qs");
+      this.$axios({
+        method: "get",
+        url: "/api/need?page=1&pageSize=5&StepNumber=1&Type=教师教学能力大赛",
+        data: qs.stringify({
+        }),
+      })
+        .then((res) => {
+          if (res.data.err == 0) {
+            this.List_JiaoXueNengLi = res.data.data.rows;
+            this.loading = false;
+          }
+          else {
+            this.$message.error("错误：" + res.data.err);
+          }
+        })
+        .catch((error) => {
+          this.$message.error("出错！" + error);
+          console.log(error);
+          this.loading = false;
+        });
+    },
+    GetList_WeiKeZhiZuo( ) {
+      this.loading = true;
+      var qs = require("qs");
+      this.$axios({
+        method: "get",
+        url: "/api/need?page=1&pageSize=5&StepNumber=1&Type=微课制作",
+        data: qs.stringify({
+        }),
+      })
+        .then((res) => {
+          if (res.data.err == 0) {
+            this.List_WeiKeZhiZuo = res.data.data.rows;
+            this.loading = false;
+          }
+          else {
+            this.$message.error("错误：" + res.data.err);
+          }
+        })
+        .catch((error) => {
+          this.$message.error("出错！" + error);
+          console.log(error);
+          this.loading = false;
+        });
+    },
+    GetList_XuNiFangZhen( ) {
+      this.loading = true;
+      var qs = require("qs");
+      this.$axios({
+        method: "get",
+        url: "/api/need?page=1&pageSize=5&StepNumber=1&Type=虚拟仿真",
+        data: qs.stringify({
+        }),
+      })
+        .then((res) => {
+          if (res.data.err == 0) {
+            this.List_XuNiFangZhen = res.data.data.rows;
+            this.loading = false;
+          }
+          else {
+            this.$message.error("错误：" + res.data.err);
+          }
+        })
+        .catch((error) => {
+          this.$message.error("出错！" + error);
+          console.log(error);
+          this.loading = false;
+        });
+    },
+    GetList_KeChengKaiFa( ) {
+      this.loading = true;
+      var qs = require("qs");
+      this.$axios({
+        method: "get",
+        url: "/api/need?page=1&pageSize=5&StepNumber=1&Type=课程开发",
+        data: qs.stringify({
+        }),
+      })
+        .then((res) => {
+          if (res.data.err == 0) {
+            this.List_KeChengKaiFa = res.data.data.rows;
+            this.loading = false;
+          }
+          else {
+            this.$message.error("错误：" + res.data.err);
+          }
+        })
+        .catch((error) => {
+          this.$message.error("出错！" + error);
+          console.log(error);
+          this.loading = false;
+        });
+    },
     subStr(str, len) {
       if (str.length <= len) {
         return str;
@@ -228,7 +376,9 @@ export default {
     ToInformationDetail_School(item) {
       this.$router.push({ path: '/Web/InformationPublish/InformationDetail_School', query: { id: item.id } })
     },
-
+    ToIneedDetail(item) {
+      this.$router.push({ path: '/Web/Need/NeedSubmit', query: { id: item.id } })
+    },
     GetSchoolList() {
       this.loading = true;
       var qs = require("qs");
