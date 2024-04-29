@@ -40,18 +40,19 @@ export default {
         this.loadingimg=true;
         var qs = require("qs");
         this.$axios({
-          method: "get",
-          url: "/api/systemMember?LoginName="+this.loginForm.username+"&LoginPwd="+this.loginForm.password,
+          method: "post",
+          url: "/api/systemMember/Login",
           data: qs.stringify({
-           
+            LoginName:this.loginForm.username,
+            LoginPwd:this.loginForm.password
           })
         }) .then(res => {
           
           if(res.data.err==0)
           {
-              if(res.data.data.count>0)
+              if(res.data.data)
               {
-                _this.userToken = "UserIDToken:"+res.data.data.rows[0].id;
+                _this.userToken = ""+res.data.data.Token;
                 //将用户token保存到vuex中
                 _this.changeToken(_this.userToken);
                 this.$message({ message: "登录成功!", type: "success" });

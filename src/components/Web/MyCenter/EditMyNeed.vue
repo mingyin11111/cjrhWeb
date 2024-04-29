@@ -64,7 +64,9 @@
                         </el-row>
                         <el-form-item label=" 招标附件">
                             <el-upload class="avatar-uploader" action="/api/upload/fileupload" :show-file-list="false"
-                                :on-success="UpLoadSuccess">
+                                :on-success="UpLoadSuccess"
+                                :headers="{'token': tokenValue}"
+                                >
                                 <el-button size="small" type="primary">点击上传</el-button>
                             </el-upload>
                         </el-form-item>
@@ -96,6 +98,7 @@ export default {
     name: "Publish",
     data() {
         return {
+            tokenValue:'',
             drawer: false,
             module: { id: 0, Title: "", Type: "", Memo: "", Budget: 0, Period: "", MemberID: "", State: "", WinningID: "", CreatTime: "", ApproveTime: '' },
             fileList: [],
@@ -126,6 +129,7 @@ export default {
         this.module.id = this.$route.query.id;
          this.GetAttachList(1);
         this.GetNeedDetail(this.module.id);
+        this.tokenValue=localStorage.getItem('Token');
     },
     methods: {
         GetAttachList(pageNumber) {

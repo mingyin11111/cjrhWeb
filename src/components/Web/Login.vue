@@ -87,22 +87,23 @@ export default {
                 this.Login_loading = true;
                 var qs = require("qs");
                 this.$axios({
-                    method: "get",
-                    url: "/api/systemMember?LoginName=" + this.PwdLogin.Name + "&LoginPwd=" + this.PwdLogin.Pwd,
+                    method: "post",
+                    url: "/api/systemMember/Login",
                     data: qs.stringify({
-
+                        LoginName:this.PwdLogin.Name,
+                        LoginPwd:this.PwdLogin.Pwd
                     })
                 }).then(res => {
 
                     if (res.data.err == 0) {
-                        if (res.data.data.count > 0) {
-                            _this.userToken = "UserIDToken:" + res.data.data.rows[0].id;
+                        if (res.data.data) {
+                            _this.userToken =   res.data.data.Token;
                             //将用户token保存到vuex中
                             _this.changeToken(_this.userToken);
-                            _this.changeMemberName( res.data.data.rows[0].Name);
-                            _this.changeUnitName( res.data.data.rows[0].UnitName);
-                            _this.changeUserType( res.data.data.rows[0].UserType);
-                            _this.changeMemberID( res.data.data.rows[0].id);
+                            _this.changeMemberName( res.data.data.Name);
+                            _this.changeUnitName( res.data.data.UnitName);
+                            _this.changeUserType( res.data.data.UserType);
+                            _this.changeMemberID( res.data.data.id);
                             this.$message({ message: "登录成功!", type: "success" });
                             _this.$router.push("/Web/index");
                         }
@@ -111,7 +112,7 @@ export default {
                         }
                     }
                     else {
-                        this.$message.error("登录过程中出错：" + res.data.err);
+                        this.$message.error("登录过程中出错：" + res.data.err+res.data.errMsg);
                     }
 
                     this.Login_loading = false;

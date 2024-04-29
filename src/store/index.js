@@ -19,7 +19,7 @@ const store = new Vuex.Store({
       // 修改token，并将token存入localStorage
       changeToken(state, token) {
         state.Token = token;
-        localStorage.setItem('Token', JSON.stringify(token) );
+        localStorage.setItem('Token',  token );
       },
       changeVuexStore(state, v)
       {state.VuexStore = v;

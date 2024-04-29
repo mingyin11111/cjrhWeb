@@ -24,13 +24,18 @@ Vue.prototype.$axios=axios;
 Vue.prototype.$store=store;
 axios.interceptors.request.use(
   config => {
+    
+    if(localStorage.getItem('Token')!=null){
+      const token=localStorage.getItem('Token')
+      config.headers.common['token']=token
+    } 
       //除登陆接口意外的接口都要加上token，才可以请求接口
-      if (!config.url.endsWith('/Login')) {
-          if(localStorage.getItem('Token')!=null){
-              const token=localStorage.getItem('Token')
-              config.headers.common['token']=token
-          } 
-      } 
+      //if (!config.url.endsWith('/Login')) {
+      //    if(localStorage.getItem('Token')!=null){
+      //        const token=localStorage.getItem('Token')
+      //        config.headers.common['token']=token
+      //    } 
+      //} 
       return config;
   },
   error => {
