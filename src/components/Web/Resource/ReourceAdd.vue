@@ -30,10 +30,10 @@
                 </el-form-item>
                 <el-form-item label="类型" prop="Type" :label-width="formLabelWidth">
                   <el-select v-model="module.Type" placeholder="请选择">
-                    <el-option  key="行业动态" label="行业动态" value="行业动态"> </el-option>
-                    <el-option  key="政策法规" label="政策法规" value="政策法规"> </el-option>
-                    <el-option  key="调研报告" label="调研报告" value="调研报告"> </el-option>
-                    <el-option  key="科技前瞻" label="科技前瞻" value="科技前瞻"> </el-option>
+                    <el-option key="行业动态" label="行业动态" value="行业动态"> </el-option>
+                    <el-option key="政策法规" label="政策法规" value="政策法规"> </el-option>
+                    <el-option key="调研报告" label="调研报告" value="调研报告"> </el-option>
+                    <el-option key="科技前瞻" label="科技前瞻" value="科技前瞻"> </el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item label="内容" prop="Content" :label-width="formLabelWidth">
@@ -41,7 +41,7 @@
                 </el-form-item>
                 <el-form-item label="封面图" :label-width="formLabelWidth">
                   <el-upload class="avatar-uploader" action="/api/upload/fileupload" :show-file-list="false"
-                    :on-success="UpLoadSuccess">
+                    :on-success="UpLoadSuccess" :headers="{ 'token': tokenValue }">
                     <img v-if="module.Attachment" :src="module.Attachment.split('*')[0]" class="avatar">
                     <i v-else class="el-icon-plus avatar-uploader-icon"
                       style=" border-style: solid;    border-color: #a69fe2;    border-width: 1px;"></i>
@@ -68,12 +68,13 @@ export default {
   name: "Unit_Company",
   data() {
     return {
+      tokenValue: '',
       pageinfo: { PageSize: 10, CurrentPageNumber: 1, RecordCount: 0, PageData: [] },
       pageSizeOption: [10, 15, 20, 50, 100],
       tableData: [],
       editerdialogVisible: false,
       editerdialogTitle: "编辑",
-      module: { id: 0, Title: "", Type: "", Content: "", Attachment: "", MemberID: 0  },
+      module: { id: 0, Title: "", Type: "", Content: "", Attachment: "", MemberID: 0 },
       formLabelWidth: "120px",
       childModuleFID: 0,
       currentRow: {},
@@ -94,7 +95,7 @@ export default {
   },
   mounted() {
     //this.GetList(1);
-    
+    this.tokenValue = localStorage.getItem('Token');
   },
   methods: {
 
@@ -127,9 +128,9 @@ export default {
               type: "success",
               message: "添加成功!",
             });
-           
+
           } else {
-            
+
             this.$message({
               type: "info",
               message: "添加失败，请重试" + response.data.err,
@@ -145,7 +146,12 @@ export default {
     },
 
     UpLoadSuccess(data) {
-      this.module.Attachment = "/api/files/" + data.data;
+      if (data.err > 0) {
+        this.$message.error(data.errMsg);
+      }
+      else {
+        this.module.Attachment = "/api/files/" + data.data;
+      }
     },
 
     clear_info() {

@@ -119,11 +119,11 @@ export default {
                 }),
             })
                 .then((res) => {
-                    if (response.data.err == 0) {
+                    if (res.data.err == 0) {
                                 this.$message({ type: 'success ', message: '操作完成' });
                                 this.goBack();
                             } else {
-                                this.$message.error('错误：' + response.data.err);
+                                this.$message.error('错误：' + res.data.err);
                             }
                 })
                 .catch((error) => {
@@ -327,7 +327,7 @@ export default {
                 });
         },
         goBack() {
-            this.$router.push({ path: '/Manager/NeedManager/NeedList' })
+            this.$router.push({ path: '/Web/MyCenter/MyCenter' })
         },
         GetNeedDetail(ID) {
             this.loading = true;

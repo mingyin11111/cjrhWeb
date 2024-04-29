@@ -50,9 +50,15 @@ export default {
       })
         .then((res) => {
           if (res.data.err == 0) {
-            this.module = res.data.data.rows[0];
-            this.pageinfo.RecordCount = res.data.data.count;
-            this.loading = false;
+            if (res.data.data.rows.length > 0) {
+              this.module = res.data.data.rows[0];
+              this.pageinfo.RecordCount = res.data.data.count;
+              this.loading = false;
+            }
+            else {
+              this.$message.error("错误：未取得数据，或资源不存在");
+            }
+
           }
           else {
             this.$message.error("错误：" + res.data.err);

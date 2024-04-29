@@ -49,11 +49,12 @@
 
                                         <tr>
                                             <td style="height:35px;overflow: hidden;">
-                                                <div v-show="currentFileItem == item" style="height:35px;overflow: hidden;">
+                                                <div v-show="currentFileItem == item"
+                                                    style="height:35px;overflow: hidden;">
                                                     <el-tooltip class="item" effect="dark" content="删除"
                                                         placement="top-start">
-                                                        <el-button type="danger" icon="el-icon-delete" size="mini" alt="删除"
-                                                            @click="deletePic(item)" circle></el-button>
+                                                        <el-button type="danger" icon="el-icon-delete" size="mini"
+                                                            alt="删除" @click="deletePic(item)" circle></el-button>
                                                     </el-tooltip>
                                                 </div>
                                             </td>
@@ -64,9 +65,7 @@
                         </el-row>
                         <el-form-item label=" 招标附件">
                             <el-upload class="avatar-uploader" action="/api/upload/fileupload" :show-file-list="false"
-                                :on-success="UpLoadSuccess"
-                                :headers="{'token': tokenValue}"
-                                >
+                                :on-success="UpLoadSuccess" :headers="{ 'token': tokenValue }">
                                 <el-button size="small" type="primary">点击上传</el-button>
                             </el-upload>
                         </el-form-item>
@@ -90,7 +89,7 @@
         </el-main>
     </el-container>
 </template>
-  
+
 <script>
 import VueRouter from 'vue-router';
 
@@ -98,7 +97,7 @@ export default {
     name: "Publish",
     data() {
         return {
-            tokenValue:'',
+            tokenValue: '',
             drawer: false,
             module: { id: 0, Title: "", Type: "", Memo: "", Budget: 0, Period: "", MemberID: "", State: "", WinningID: "", CreatTime: "", ApproveTime: '' },
             fileList: [],
@@ -123,13 +122,13 @@ export default {
         };
     },
     created() {
-         
+
     },
     mounted() {
         this.module.id = this.$route.query.id;
-         this.GetAttachList(1);
+        this.GetAttachList(1);
         this.GetNeedDetail(this.module.id);
-        this.tokenValue=localStorage.getItem('Token');
+        this.tokenValue = localStorage.getItem('Token');
     },
     methods: {
         GetAttachList(pageNumber) {
@@ -137,16 +136,15 @@ export default {
             var qs = require("qs");
             this.$axios({
                 method: "get",
-                url: "/api/systemAttachment?page=1&pageSize=9000&RelationModuleName=t_need&RelationKey="+this.module.id ,
+                url: "/api/systemAttachment?page=1&pageSize=9000&RelationModuleName=t_need&RelationKey=" + this.module.id,
                 data: qs.stringify({
                 }),
             })
                 .then((res) => {
                     if (res.data.err == 0) {
-                        let  AttachList = res.data.data.rows;
-                        for(var i=0;i<AttachList.length;i++)
-                        {
-                            this.fileList.push(AttachList[i].AttachMentPath+"*"+AttachList[i].FileName);
+                        let AttachList = res.data.data.rows;
+                        for (var i = 0; i < AttachList.length; i++) {
+                            this.fileList.push(AttachList[i].AttachMentPath + "*" + AttachList[i].FileName);
                         }
                         this.loading = false;
                     }
@@ -167,7 +165,7 @@ export default {
             }
             var t = new Date(dt);
             if (t.getFullYear() + "" == "NaN") return "";
-            return t.getFullYear() + "-" + (t.getMonth() + 1) + "-" + (t.getDate()) + " "+(t.getHours())+":"+t.getMinutes()+":"+t.getMinutes();
+            return t.getFullYear() + "-" + (t.getMonth() + 1) + "-" + (t.getDate()) + " " + (t.getHours()) + ":" + t.getMinutes() + ":" + t.getMinutes();
         },
         GetLogList() {
             this.drawer = true;
@@ -208,7 +206,7 @@ export default {
                     if (res.data.err == 0) {
                         this.module = res.data.data;
 
-                        this.fileList=this.module.Attachment.split('|');
+                        this.fileList = this.module.Attachment.split('|');
                         this.loading = false;
                     }
                     else {
@@ -246,14 +244,14 @@ export default {
             var da = Date.now();
             this.$axios({
                 method: "PATCH",
-                url: "/api/need/"+this.module.id,
+                url: "/api/need/" + this.module.id,
                 data: qs.stringify({
                     Title: this.module.Title,
                     Type: this.module.Type,
                     Memo: this.module.Memo,
                     Budget: this.module.Budget,
                     Period: this.module.Period,
-                    Attachment:AttachmentSubmit,
+                    Attachment: AttachmentSubmit,
                     MemberID: this.$store.state.MemberID,
                     State: '待审核',
                 }),
@@ -281,7 +279,13 @@ export default {
 
         },
         UpLoadSuccess(data) {
-            this.fileList.push("/api/files/" + data.data);
+            if (data.err > 0) {
+                this.$message.error(data.errMsg);
+            }
+            else {
+                this.fileList.push("/api/files/" + data.data);
+            }
+
         },
         MouseMove(item) {
             this.currentFileItem = item;
@@ -297,9 +301,9 @@ export default {
     components: { VueRouter }
 };
 </script>
-<style scoped> ul li {
+<style scoped>
+ ul li {
      float: left;
      list-style: none;
  }
 </style>
-  

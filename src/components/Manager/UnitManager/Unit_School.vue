@@ -19,9 +19,9 @@
           </div>
           <template>
             <el-table :data="pageinfo.PageData" style="width: 100%" row-key="id" :row-style="rowStyle"
-              :cellStyle="cellStyle" border default-expand-all highlight-current-row @current-change="handleCurrentChange"
-              :tree-props="{ children: 'children', hasChildren: 'hasChildren' }" v-loading="loading"
-              element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading"
+              :cellStyle="cellStyle" border default-expand-all highlight-current-row
+              @current-change="handleCurrentChange" :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
+              v-loading="loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading"
               element-loading-background="rgba(0, 0, 0, 0.8)">
               <el-table-column prop="Name" label="学校名称"> </el-table-column>
               <el-table-column prop="Memo" label="简介"> </el-table-column>
@@ -78,7 +78,7 @@
           </el-form-item>
           <el-form-item label="Logo" :label-width="formLabelWidth">
             <el-upload class="avatar-uploader" action="/api/upload/fileupload" :show-file-list="false"
-              :on-success="UpLoadSuccess" :before-upload="beforeAvatarUpload">
+              :on-success="UpLoadSuccess" :before-upload="beforeAvatarUpload" :headers="{ 'token': tokenValue }">
               <img v-if="module.Logo" :src="module.Logo" class="avatar">
               <i v-else class="el-icon-plus avatar-uploader-icon"
                 style=" border-style: solid;    border-color: #a69fe2;    border-width: 1px;"></i>
@@ -100,6 +100,7 @@ export default {
   name: "Unit_School",
   data() {
     return {
+      tokenValue: '',
       pageinfo: { PageSize: 10, CurrentPageNumber: 1, RecordCount: 0, PageData: [] },
       pageSizeOption: [10, 15, 20, 50, 100],
       tableData: [],
@@ -114,6 +115,7 @@ export default {
     };
   },
   mounted() {
+    this.tokenValue = localStorage.getItem('Token');
     this.GetList(1);
   },
   methods: {
@@ -195,8 +197,12 @@ export default {
       ///////////////////////////////////////////////////////////////
     },
     UpLoadSuccess(data) {
-
-      this.module.Logo = "/api/files/" + data.data.split('*')[0];
+      if (data.err > 0) {
+        this.$message.error(data.errMsg);
+      }
+      else {
+        this.module.Logo = "/api/files/" + data.data.split('*')[0];
+      }
     },
     Add_School() {
       this.editerdialogTitle = "添加学校";
@@ -216,22 +222,22 @@ export default {
     handleCurrentChange(val) {
       this.currentRow = val;
     },
-    doCheckAdd(){
+    doCheckAdd() {
       /// 检查要添加的学校是否已存在
       this.$axios({
         method: "GET",
-        url: "/api/school?Name="+this.module.Name,
+        url: "/api/school?Name=" + this.module.Name,
       })
-      .then((response) => {
-        if (response.data.err == 0 && response.data.data.count>0 ) {
-          this.$message.error('该学校已存在，不能重复添加');
-        } else {
-          this.doAdd();
-        }
-      })
-      .catch((error) => {
-        this.$message({ type: "info", message: error });
-      });
+        .then((response) => {
+          if (response.data.err == 0 && response.data.data.count > 0) {
+            this.$message.error('该学校已存在，不能重复添加');
+          } else {
+            this.doAdd();
+          }
+        })
+        .catch((error) => {
+          this.$message({ type: "info", message: error });
+        });
     },
     doAdd() {
       this.loading = true;
@@ -321,7 +327,7 @@ export default {
 
 };
 </script>
- 
+
 <style scoped>
 .bg-purple-dark {
   background: #99a9bf;

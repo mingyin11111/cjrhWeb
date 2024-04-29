@@ -1,5 +1,5 @@
 <template>
-   
+
     <el-container>
         <el-main v-loading="loading">
             <el-row>
@@ -31,7 +31,8 @@
                             </el-form-item>
                             <el-form-item label="Logo" prop="Logo" :label-width="formLabelWidth">
                                 <el-upload class="avatar-uploader" action="/api/upload/fileupload"
-                                    :show-file-list="false" :on-success="UpLoadSuccess">
+                                    :show-file-list="false" :on-success="UpLoadSuccess"
+                                    :headers="{ 'token': tokenValue }">
                                     <img v-if="module.Logo" :src="module.Logo" class="avatar">
                                     <i v-else class="el-icon-plus avatar-uploader-icon"
                                         style=" border-style: solid;    border-color: #a69fe2;    border-width: 1px;"></i>
@@ -74,6 +75,7 @@ import Vue from 'vue'
 export default {
     data() {
         return {
+            tokenValue: '',
             pageinfo: { PageSize: 10, CurrentPageNumber: 1, RecordCount: 0, PageData: [] },
             pageSizeOption: [10, 15, 20, 50, 100],
             tableData: [],
@@ -129,6 +131,7 @@ export default {
         };
     },
     mounted() {
+        this.tokenValue = localStorage.getItem('Token');
         this.GetList(1);
     },
     methods: {
@@ -189,7 +192,7 @@ export default {
             })
                 .then((response) => {
                     if (response.data.err == 0) {
-                       let  schoolID=response.data.data.id;
+                        let schoolID = response.data.data.id;
                         this.doAddMember(schoolID)
                     } else {
                         this.$message({
@@ -204,8 +207,7 @@ export default {
                     this.loading = false;
                 });
         },
-        doAddMember(schoolID)
-        {
+        doAddMember(schoolID) {
             this.loading = true;
             var qs = require("qs");
             this.$axios({
@@ -226,14 +228,14 @@ export default {
             })
                 .then((response) => {
                     if (response.data.err == 0) {
-                       
+
                         this.$alert('你的注册已成功，请登录系统', '注册成功', {
-                        confirmButtonText: '确定',
-                        callback: action => {
-                             this.$router.push({ path: '/Web/Login'  })
-                        }
+                            confirmButtonText: '确定',
+                            callback: action => {
+                                this.$router.push({ path: '/Web/Login' })
+                            }
                         });
-                         
+
                     } else {
                         this.loading = false;
                         this.$message({
@@ -248,7 +250,7 @@ export default {
                     this.loading = false;
                 });
 
-        
+
 
         },
         doUpdate() {
@@ -329,7 +331,12 @@ export default {
             ///////////////////////////////////////////////////////////////
         },
         UpLoadSuccess(data) {
-            this.module.Logo = "/api/files/" + data.data.split('*')[0];
+            if (data.err > 0) {
+                this.$message.error(data.errMsg);
+            }
+            else {
+                this.module.Logo = "/api/files/" + data.data.split('*')[0];
+            }
         },
         Add_Company() {
             ///Web/Resource/ReourceAdd

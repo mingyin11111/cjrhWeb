@@ -111,7 +111,8 @@
                                 </el-form-item>
                                 <el-form-item label=" " :label-width="formLabelWidth">
                                     <el-upload class="avatar-uploader" action="/api/upload/fileupload" :show-file-list="false"
-                                    :on-success="UpLoadSuccess"  >
+                                    :on-success="UpLoadSuccess" 
+                                    :headers="{'token': tokenValue}">
                                     <el-button size="small" type="primary">点击上传</el-button>
                                     </el-upload>
                                 </el-form-item>
@@ -136,6 +137,7 @@ export default {
     name: "InformationPublish",
     data() {
         return {
+            tokenValue:'',
             NeedsList:[],
             fileList:[],
             currentFileItem:'',
@@ -169,6 +171,7 @@ export default {
         }
     },
     mounted() {
+        this.tokenValue=localStorage.getItem('Token');
         this.Unit_School_Company_List = [];
         this.GetList(1);
     },
@@ -637,7 +640,13 @@ export default {
         },
 
         UpLoadSuccess(data) {
-           this.fileList.push("/api/files/" + data.data);
+            if(data.err>0)
+            {
+                this.$message.error(data.errMsg);
+            }
+            else{
+                this.fileList.push("/api/files/" + data.data);
+            }
         },
 
         UpLoadChange(file,list) {

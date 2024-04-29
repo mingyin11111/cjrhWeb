@@ -22,7 +22,8 @@
                             </el-steps>
                             <table style="width:99%;margin:auto;margin-top: 20px; ">
                                 <tr>
-                                    <td style="color: rgb(129, 128, 128); width: 100px; word-break: break-all; ">需求描述</td>
+                                    <td style="color: rgb(129, 128, 128); width: 100px; word-break: break-all; ">需求描述
+                                    </td>
                                     <td style="padding: 10px; word-break: break-all;">{{ NeedModel.Memo }}</td>
                                 </tr>
                                 <tr>
@@ -37,7 +38,7 @@
                                     <td style="color: rgb(129, 128, 128);  ">附件</td>
                                     <td style="padding: 10px;">
                                         <ul style="list-style: none;margin: 0px;padding-left: 0px;">
-                                            <li v-for="item in NeedModel.Attachment.split('|')" 
+                                            <li v-for="item in NeedModel.Attachment.split('|')"
                                                 @click="DownLoadSubmitFile(item.split('*')[0])"
                                                 style="cursor: pointer;color: cornflowerblue;padding-bottom: 5px;">
                                                 {{ item.split('*')[1] }}
@@ -157,15 +158,16 @@
                                     @click="AttaAcceptdialogVisible = true">上传验收资料</el-button>
                             </span>
                         </div>
-                        <div v-if="NeedModel.WinningID == $store.state.MemberID && (NeedModel.AttaAccept+'')!='undefined'"
-                        style="text-align: center; width: 100%; color: red;"
-                        >
-                        <span v-if=" NeedModel.StepNumber==3"> 验收资料已上传成功，请等待验收。</span>
-                        <span v-if=" NeedModel.StepNumber==4"> 已验收完成</span>
+                        <div v-if="NeedModel.WinningID == $store.state.MemberID && (NeedModel.AttaAccept + '') != 'undefined'"
+                            style="text-align: center; width: 100%; color: red;">
+                            <span v-if="NeedModel.StepNumber == 3"> 验收资料已上传成功，请等待验收。</span>
+                            <span v-if="NeedModel.StepNumber == 4"> 已验收完成</span>
                         </div>
 
-                        <div v-if="NeedModel.MemberID == $store.state.MemberID && (NeedModel.AttaAccept+'')!='undefined' && NeedModel.StepNumber==3"  style="text-align: center; width: 100%;  " >
-                            <el-button type="primary" style="width: 40%;"  @click="ConfirmAcceptApprove">确定验收通过</el-button>
+                        <div v-if="NeedModel.MemberID == $store.state.MemberID && (NeedModel.AttaAccept + '') != 'undefined' && NeedModel.StepNumber == 3"
+                            style="text-align: center; width: 100%;  ">
+                            <el-button type="primary" style="width: 40%;"
+                                @click="ConfirmAcceptApprove">确定验收通过</el-button>
                         </div>
                     </el-col>
                 </el-row>
@@ -176,14 +178,15 @@
             <el-form :model="module" :rules="rules" ref="module" label-width="100px" class="demo-ruleForm">
                 <el-form-item label="请选择中标方" prop="Prise">
                     <el-select v-model="Win_SubmitID" placeholder="请选择">
-                        <el-option v-for="item in SubmitList" :key="item.id" :label="item.SubmitUnitName" :value="item.id">
+                        <el-option v-for="item in SubmitList" :key="item.id" :label="item.SubmitUnitName"
+                            :value="item.id">
                         </el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="中标结果通知" :label-width="formLabelWidth">
                     <el-upload class="avatar-uploader" action="/api/upload/fileupload" :show-file-list="true"
                         :file-list="fileList_ZhongBiaoTongZhi" :on-success="UpLoadSuccess_ZhongBiaoTongZhi"
-                        :on-remove="deleteFileitem_ZhongBiaoTongZhi">
+                        :on-remove="deleteFileitem_ZhongBiaoTongZhi" :headers="{ 'token': tokenValue }">
                         <el-button size="small" type="primary">点击上传</el-button>
                     </el-upload>
                 </el-form-item>
@@ -203,7 +206,8 @@
 
                 <el-form-item label=" " :label-width="formLabelWidth">
                     <el-upload class="avatar-uploader" action="/api/upload/fileupload" :show-file-list="true"
-                        :file-list="fileList" :on-success="UpLoadSuccess" :on-remove="deleteFileitem">
+                        :file-list="fileList" :on-success="UpLoadSuccess" :on-remove="deleteFileitem"
+                        :headers="{ 'token': tokenValue }">
                         <el-button size="small" type="primary">点击上传</el-button>
                     </el-upload>
                 </el-form-item>
@@ -219,7 +223,7 @@
                 <el-form-item label=" " :label-width="formLabelWidth">
                     <el-upload class="avatar-uploader" action="/api/upload/fileupload" :show-file-list="true"
                         :file-list="fileList_AttaAccept" :on-success="UpLoadSuccess_AttaAccept"
-                        :on-remove="deleteFileitem_AttaAccept">
+                        :on-remove="deleteFileitem_AttaAccept" :headers="{ 'token': tokenValue }">
                         <el-button size="small" type="primary">点击上传</el-button>
                     </el-upload>
                 </el-form-item>
@@ -230,15 +234,16 @@
             </div>
         </el-dialog>
 
-        
+
     </el-container>
 </template>
-  
+
 <script>
 export default {
     name: "NeedDetail",
     data() {
         return {
+            tokenValue: '',
             Win_SubmitID: 0,
             SelectWinnerdialogTitle: '确定中标方',
             SelectWinnerdialogVisible: false,
@@ -265,14 +270,15 @@ export default {
         }
     },
     mounted() {
+        this.tokenValue = localStorage.getItem('Token');
         this.NeedID = this.$route.query.id;
         this.GetAttachList(1);
         this.GetSubmitList(1);
         this.GetNeedDetail(this.NeedID);
     },
     methods: {
-        ConfirmAcceptApprove()
-        { var qs = require("qs");
+        ConfirmAcceptApprove() {
+            var qs = require("qs");
             this.$confirm("确定通过验收吗?", "提示", {
                 confirmButtonText: "确定",
                 cancelButtonText: "取消",
@@ -280,27 +286,27 @@ export default {
                 center: true,
             }).then(() => {
                 this.$axios({
-                method: "PATCH",
-                url: "/api/need/" + this.NeedID,
-                data: qs.stringify({
-                    StepNumber: 4,
-                    State: '验收交付',
-                    
-                }),
-            })
-                .then((response) => {
-                    if (response.data.err == 0) {
-                        this.$message({ type: 'success ', message: '操作完成' });
-                        
-                        this.GetNeedDetail(this.NeedID);
-                    } else {
-                        this.$message.error('错误：' + response.data.err);
-                    }
+                    method: "PATCH",
+                    url: "/api/need/" + this.NeedID,
+                    data: qs.stringify({
+                        StepNumber: 4,
+                        State: '验收交付',
 
+                    }),
                 })
-                .catch((error) => {
-                    this.$message({ type: "info", message: error });
-                });
+                    .then((response) => {
+                        if (response.data.err == 0) {
+                            this.$message({ type: 'success ', message: '操作完成' });
+
+                            this.GetNeedDetail(this.NeedID);
+                        } else {
+                            this.$message.error('错误：' + response.data.err);
+                        }
+
+                    })
+                    .catch((error) => {
+                        this.$message({ type: "info", message: error });
+                    });
 
 
             })
@@ -402,14 +408,14 @@ export default {
                 this.$message.error('请上传验收资料');
                 return;
             }
-              
+
             this.$axios({
                 method: "PATCH",
                 url: "/api/need/" + this.NeedID,
                 data: qs.stringify({
                     AttaAccept: AttachmentSubmit,
-                    StepNumber:3,
-                    State:'项目执行',
+                    StepNumber: 3,
+                    State: '项目执行',
 
                 }),
             })
@@ -493,15 +499,30 @@ export default {
             }
         },
         UpLoadSuccess_AttaAccept(data) {
-            this.fileList_AttaAccept.push("/api/files/" + data.data);
+            if (data.err > 0) {
+                this.$message.error(data.errMsg);
+            }
+            else {
+                this.fileList_AttaAccept.push("/api/files/" + data.data);
+            }
         },
         UpLoadSuccess(data) {
-            this.fileList.push("/api/files/" + data.data);
+            if (data.err > 0) {
+                this.$message.error(data.errMsg);
+            }
+            else {
+                this.fileList.push("/api/files/" + data.data);
+            }
         },
         UpLoadSuccess_ZhongBiaoTongZhi(data) {
-            this.fileList_ZhongBiaoTongZhi.push("/api/files/" + data.data);
+            if (data.err > 0) {
+                this.$message.error(data.errMsg);
+            }
+            else {
+                this.fileList_ZhongBiaoTongZhi.push("/api/files/" + data.data);
+            }
         },
-        
+
         MouseMove(item) {
             this.currentFileItem = item;
         },
@@ -651,7 +672,7 @@ export default {
                     if (res.data.err == 0) {
                         this.NeedModel = res.data.data;
                         this.NeedModel.AttaWinningNotice += "";
-                        this.NeedModel.AttaAccept+="";
+                        this.NeedModel.AttaAccept += "";
                         this.loading = false;
                     }
                     else {
@@ -669,18 +690,18 @@ export default {
 
 };
 </script>
-   
-<style scoped> table {
-     border-collapse: collapse;
- }
 
- table,
- table tr td {
-     border: 1px solid #ccc;
- }
+<style scoped>
+table {
+    border-collapse: collapse;
+}
 
- table tr td {
-     padding: 5px 10px;
- }
+table,
+table tr td {
+    border: 1px solid #ccc;
+}
+
+table tr td {
+    padding: 5px 10px;
+}
 </style>
-  
