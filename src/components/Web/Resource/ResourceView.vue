@@ -3,7 +3,7 @@
     <el-main>
       <el-row>
         <el-col :span="24">
-          <div style="height: 80px;"></div>
+           
           <el-card class="box-card" v-loading="loading">
 
             <div style="text-align: center; padding: 10px;font-size: 18px;font-weight: bold;">

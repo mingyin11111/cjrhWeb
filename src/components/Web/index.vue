@@ -94,7 +94,7 @@
         </span>
         <el-row :gutter="10" justify="space-between">
 
-          <el-col :span="6" class="elcol-l2" v-for="item in SchoolList" key="item" style="text-align: center;">
+          <el-col :span="6" class="elcol-l2" v-for="item in SchoolList" :key="item.id" style="text-align: center;">
             <el-card shadow="always">
               <p style="text-align: left;cursor:pointer;" @click="ToInformationDetail_School(item)">
                 <img :src="item.Logo"
@@ -125,19 +125,19 @@
           <el-col :span="8" class="elcol-l">
             <div style="font-size: 20px;font-weight: bold;">课程开发</div>
             <ul>
-              <li v-for="item4 in List_KeChengKaiFa" :key="item4"><el-link :underline="false"  @click="ToIneedDetail(item4)"  >{{item4.Title}}</el-link></li>
+              <li v-for="item4 in List_KeChengKaiFa" :key="item4.id"><el-link :underline="false"  @click="ToIneedDetail(item4)"  >{{item4.Title}}</el-link></li>
             </ul>
           </el-col>
           <el-col :span="8" class="elcol-l">
             <div style="font-size: 20px;font-weight: bold;">虚拟仿真</div>
             <ul>
-              <li v-for="item5 in List_XuNiFangZhen" :key="item5"><el-link :underline="false"  @click="ToIneedDetail(item5)"  >{{item5.Title}}</el-link></li>
+              <li v-for="item5 in List_XuNiFangZhen" :key="item5.id"><el-link :underline="false"  @click="ToIneedDetail(item5)"  >{{item5.Title}}</el-link></li>
             </ul>
           </el-col>
           <el-col :span="8" class="elcol-l">
             <div style="font-size: 20px;font-weight: bold;">微课制作</div>
             <ul>
-              <li v-for="item6 in List_WeiKeZhiZuo" :key="item6">
+              <li v-for="item6 in List_WeiKeZhiZuo" :key="item6.id">
                 <el-link :underline="false"  @click="ToIneedDetail(item6)"  >{{item6.Title}}</el-link> </li>
             </ul>
           </el-col>
@@ -146,7 +146,7 @@
           <el-col :span="8" class="elcol-l">
             <div style="font-size: 20px;font-weight: bold;">教师教学能力大赛</div>
             <ul>
-              <li v-for="item7 in List_JiaoXueNengLi" :key="item7">
+              <li v-for="item7 in List_JiaoXueNengLi" :key="item7.id">
                 <el-link :underline="false"  @click="ToIneedDetail(item7)"  >{{item7.Title}}</el-link>
                </li>
             </ul>
@@ -154,7 +154,7 @@
           <el-col :span="8" class="elcol-l">
             <div style="font-size: 20px;font-weight: bold;">实训室建设</div>
             <ul>
-              <li v-for="item8 in List_ShiXunShiJianShe" :key="item8">
+              <li v-for="item8 in List_ShiXunShiJianShe" :key="item8.id">
                 <el-link :underline="false"  @click="ToIneedDetail(item8)"  >{{item8.Title}}</el-link>
                 </li>
             </ul>
@@ -162,7 +162,7 @@
           <el-col :span="8" class="elcol-l">
             <div style="font-size: 20px;font-weight: bold;">其它类型</div>
             <ul>
-              <li v-for="item9 in List_PPTZhiZuo" :key="item9">
+              <li v-for="item9 in List_PPTZhiZuo" :key="item9.id">
                 <el-link :underline="false"  @click="ToIneedDetail(item9)"  >{{item9.Title}}</el-link>
                 </li>
             </ul>

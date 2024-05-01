@@ -51,11 +51,11 @@
                     <div class="el-col el-col-16" style="font-size: 20px;">
                         <table id="mybar" style="width:100%; height: 60px;   color: white;">
                             <tr>
-                                <td @click="ToIndex" align="center"> 首页 </td>
-                                <td @click="ToNeeds" align="center"> 需求大厅</td>
-                                <td @click="InformationShow" align="center"> 信息中心</td>
-                                <td @click="ToResourceList" align="center"> 资源共享</td>
-                                <td align="center"> 专项竞赛</td>
+                                <td @click="ToIndex" :class="[selectMenuIndex==1?'tdhover':'']" align="center"> 首页 </td>
+                                <td @click="ToNeeds" :class="[selectMenuIndex==2?'tdhover':'']" align="center"> 需求大厅</td>
+                                <td @click="InformationShow":class="[selectMenuIndex==3?'tdhover':'']" align="center"> 信息中心</td>
+                                <td @click="ToResourceList" :class="[selectMenuIndex==4?'tdhover':'']" align="center"> 资源共享</td>
+                                <td @click="ToZhuangXiangJingSaiList"  :class="[selectMenuIndex==5?'tdhover':'']" align="center"> 专项竞赛</td>
                                 <td style="width:200px;font-size: 14px;" align="right">
                                     <div>
                                         <div style="display: block;width: 50px;float: right;margin-right: 15px;">
@@ -113,96 +113,102 @@
                     <div>&nbsp;</div>
                 </el-col>
             </el-row>
-            <el-row style="background-color: #0168ad;border-top-style: solid;border-top-width: 1px;  border-top-color:white;">
+            <el-row
+                style="background-color: #0168ad;border-top-style: solid;border-top-width: 1px;  border-top-color:white;">
                 <el-col :span="24">
                     <table style="color:#0168ad;width: 100%;margin-top: 20px;margin-bottom: 50px;">
                         <tr>
                             <td style="width: 100%;" valign="top" align="center" colspan="32">
-                                    
-                                        <ul id="ftmeau" style="display: inherit;">
-                                            
-                                            <li class="menu-item1" style="border-right-width: thin;  border-right-style: dashed;  border-right-color: white;">
-                                                <img src="../img/fico1.png"/>
-                                                <br/>
-                                                <a style="font-size: 18px;" href="https://www.chanjiao.org.cn/?cat=56">信息公开</a>
-                                                <ul class="sub-menu">
-                                                    <li id="menu-item-6945"
-                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6945">
-                                                        <a href="https://www.chanjiao.org.cn/?cat=57">通知公告</a>
-                                                    </li>
-                                                    <li id="menu-item-6944"
-                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6944">
-                                                        <a href="https://www.chanjiao.org.cn/?cat=58">资讯快报</a>
-                                                    </li>
-                                                </ul>
+
+                                <ul id="ftmeau" style="display: inherit;">
+
+                                    <li class="menu-item1"
+                                        style="border-right-width: thin;  border-right-style: dashed;  border-right-color: white;">
+                                        <img src="../img/fico1.png" />
+                                        <br />
+                                        <a style="font-size: 18px;" href="https://www.chanjiao.org.cn/?cat=56">信息公开</a>
+                                        <ul class="sub-menu">
+                                            <li id="menu-item-6945"
+                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6945">
+                                                <a href="https://www.chanjiao.org.cn/?cat=57">通知公告</a>
                                             </li>
-                                            <li class="menu-item1" style="border-right-width: thin;  border-right-style: dashed;  border-right-color: white;">
-                                                <img src="../img/fico2.png"/>
-                                                <br/>
-                                                <a style="font-size: 18px;"  href="https://www.chanjiao.org.cn/?cat=62">行业资讯</a>
-                                                <ul class="sub-menu">
-                                                    <li id="menu-item-6949"
-                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6949">
-                                                        <a href="https://www.chanjiao.org.cn/?cat=64">行业动态</a>
-                                                    </li>
-                                                    <li id="menu-item-6946"
-                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category current-menu-item menu-item-6946">
-                                                        <a href="https://www.chanjiao.org.cn/?cat=63"
-                                                            aria-current="page">政策法规</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item1" style="border-right-width: thin;  border-right-style: dashed;  border-right-color: white;">
-                                                <img src="../img/fico3.png"/>
-                                                <br/>
-                                                <a style="font-size: 18px;"  href="https://www.chanjiao.org.cn/?cat=59">发起单位</a>
-                                                <ul class="sub-menu">
-                                                    <li id="menu-item-6948"
-                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6948">
-                                                        <a href="https://www.chanjiao.org.cn/?cat=61">主任单位</a>
-                                                    </li>
-                                                    <li id="menu-item-6947"
-                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6947">
-                                                        <a href="https://www.chanjiao.org.cn/?cat=60">副主任单位</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item1" style="border-right-width: thin;  border-right-style: dashed;  border-right-color: white;">
-                                                <img src="../img/fico4.png"/>
-                                                <br/>
-                                                <a style="font-size: 18px;"  href="https://www.chanjiao.org.cn/?page_id=6890">会员服务</a>
-                                                <ul class="sub-menu">
-                                                    <li id="menu-item-6954"
-                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6954">
-                                                        <a href="https://www.chanjiao.org.cn/?page_id=6926">工作规则</a>
-                                                    </li>
-                                                    <li id="menu-item-6952"
-                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6952">
-                                                        <a href="https://www.chanjiao.org.cn/?page_id=6894">入会申请</a>
-                                                    </li>
-                                                    <li id="menu-item-6951"
-                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6951">
-                                                        <a href="https://www.chanjiao.org.cn/?page_id=6895">入会流程</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item1">
-                                                <img src="../img/fico5.png"/>
-                                                <br/>
-                                                <a style="font-size: 18px;"  href="https://www.chanjiao.org.cn/?cat=65">专家智库</a>
-                                                <ul class="sub-menu">
-                                                    <li id="menu-item-6943"
-                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6943">
-                                                        <a href="https://www.chanjiao.org.cn/?cat=67">智库成员</a>
-                                                    </li>
-                                                    <li id="menu-item-6942"
-                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6942">
-                                                        <a href="https://www.chanjiao.org.cn/?cat=66">专家观点</a>
-                                                    </li>
-                                                </ul>
+                                            <li id="menu-item-6944"
+                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6944">
+                                                <a href="https://www.chanjiao.org.cn/?cat=58">资讯快报</a>
                                             </li>
                                         </ul>
-                                    
+                                    </li>
+                                    <li class="menu-item1"
+                                        style="border-right-width: thin;  border-right-style: dashed;  border-right-color: white;">
+                                        <img src="../img/fico2.png" />
+                                        <br />
+                                        <a style="font-size: 18px;" href="https://www.chanjiao.org.cn/?cat=62">行业资讯</a>
+                                        <ul class="sub-menu">
+                                            <li id="menu-item-6949"
+                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6949">
+                                                <a href="https://www.chanjiao.org.cn/?cat=64">行业动态</a>
+                                            </li>
+                                            <li id="menu-item-6946"
+                                                class="menu-item menu-item-type-taxonomy menu-item-object-category current-menu-item menu-item-6946">
+                                                <a href="https://www.chanjiao.org.cn/?cat=63"
+                                                    aria-current="page">政策法规</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item1"
+                                        style="border-right-width: thin;  border-right-style: dashed;  border-right-color: white;">
+                                        <img src="../img/fico3.png" />
+                                        <br />
+                                        <a style="font-size: 18px;" href="https://www.chanjiao.org.cn/?cat=59">发起单位</a>
+                                        <ul class="sub-menu">
+                                            <li id="menu-item-6948"
+                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6948">
+                                                <a href="https://www.chanjiao.org.cn/?cat=61">主任单位</a>
+                                            </li>
+                                            <li id="menu-item-6947"
+                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6947">
+                                                <a href="https://www.chanjiao.org.cn/?cat=60">副主任单位</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item1"
+                                        style="border-right-width: thin;  border-right-style: dashed;  border-right-color: white;">
+                                        <img src="../img/fico4.png" />
+                                        <br />
+                                        <a style="font-size: 18px;"
+                                            href="https://www.chanjiao.org.cn/?page_id=6890">会员服务</a>
+                                        <ul class="sub-menu">
+                                            <li id="menu-item-6954"
+                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6954">
+                                                <a href="https://www.chanjiao.org.cn/?page_id=6926">工作规则</a>
+                                            </li>
+                                            <li id="menu-item-6952"
+                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6952">
+                                                <a href="https://www.chanjiao.org.cn/?page_id=6894">入会申请</a>
+                                            </li>
+                                            <li id="menu-item-6951"
+                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6951">
+                                                <a href="https://www.chanjiao.org.cn/?page_id=6895">入会流程</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item1">
+                                        <img src="../img/fico5.png" />
+                                        <br />
+                                        <a style="font-size: 18px;" href="https://www.chanjiao.org.cn/?cat=65">专家智库</a>
+                                        <ul class="sub-menu">
+                                            <li id="menu-item-6943"
+                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6943">
+                                                <a href="https://www.chanjiao.org.cn/?cat=67">智库成员</a>
+                                            </li>
+                                            <li id="menu-item-6942"
+                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6942">
+                                                <a href="https://www.chanjiao.org.cn/?cat=66">专家观点</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
                             </td>
                         </tr>
                     </table>
@@ -251,7 +257,7 @@ export default {
             LogoPic: '',
             LogoPic2: '',
             footerPic: '',
-
+            selectMenuIndex: 1,
         };
     },
     created() {
@@ -270,6 +276,9 @@ export default {
         if (url.endsWith('/#/')) {
             this.$router.push({ path: '/Web/Index' });
         }
+    },
+    computed: {
+         
     },
     methods: {
         ...mapMutations(["changeToken"]),
@@ -297,24 +306,38 @@ export default {
                 });
 
         },
-        ToMyCenter() {
-            this.$router.push({ path: '/Web/MyCenter/MyCenter' });
-        },
-        ToNeeds() {
-            this.$router.push({ path: '/Web/Need/NeedList' });
-        },
-        ToLogin() {
-            this.$router.push({ path: '/Web/Login' });
-        },
+
         ToIndex() {
+            this.selectMenuIndex=1;
             this.$router.push({ path: '/Web/index' });
         },
+        ToNeeds() {
+            this.selectMenuIndex=2;
+            this.$router.push({ path: '/Web/Need/NeedList' });
+        },
         InformationShow() {
+            this.selectMenuIndex=3;
             this.$router.push({ path: '/Web/InformationPublish/InformationShow' });
         },
         ToResourceList() {
+            this.selectMenuIndex=4;
             this.$router.push({ path: '/Web/Resource/ResourceList' });
         },
+        
+        ToZhuangXiangJingSaiList()
+        {
+            this.selectMenuIndex=5;
+        },
+        ToMyCenter() {
+            this.$router.push({ path: '/Web/MyCenter/MyCenter' });
+        },
+       
+        ToLogin() {
+            this.$router.push({ path: '/Web/Login' });
+        },
+       
+       
+       
 
     },
     components: { VueRouter }
@@ -344,6 +367,11 @@ export default {
     color: white;
 }
 
+.tdhover {
+    background: rgba(0, 54, 93, .3);
+    color: white;
+}
+
 #mybar td {
     cursor: pointer
 }
@@ -354,20 +382,23 @@ export default {
     line-height: 35px;
 }
 
-.menu-item1 a{
+.menu-item1 a {
     text-decoration: none;
     color: #b1daf8;
-    
+
 }
-.menu-item1 a:hover{
+
+.menu-item1 a:hover {
     text-decoration: none;
     color: white;
 }
-.menu-item1   a:visited{
+
+.menu-item1 a:visited {
     text-decoration: none;
     color: b1daf8;
 }
-.menu-item1 > ul{
+
+.menu-item1>ul {
     line-height: 25px;
     padding: 0px;
     font-size: 14px;

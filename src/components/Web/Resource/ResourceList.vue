@@ -3,7 +3,7 @@
     <el-main>
       <el-row>
         <el-col :span="24">
-          <div style="height: 80px;"></div>
+          
           <div class="grid-content bg-purple-dark">
             <div style="display: inline; cursor: pointer">资源共享&gt;</div>
             <div style="

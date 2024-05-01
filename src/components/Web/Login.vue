@@ -2,9 +2,8 @@
     <el-container>
         <el-main>
             <el-row>
-                <div style="height: 80px;"></div>
                 <el-col :span="24">
-
+                    <div style="height: 40px;"></div>
                     <el-card class="box-card loginbg" style="margin-top: 15px;height: 400px;  ;">
                         <div style="display: inline-block;  width: 33%;">
                             &nbsp;
@@ -43,7 +42,7 @@
                             </el-card>
                         </div>
                     </el-card>
-                    <div style="height: 80px;"></div>
+                    <div style="height: 40px;"></div>
                 </el-col>
 
             </el-row>

@@ -4,7 +4,6 @@
              
             <el-row>
                 <el-col :span="24">
-                    <div style="height: 80px;"></div>
                     <div style=" text-align: left;padding: 10px;">
                        信息中心	&gt;成果展示| {{InformationModel.NeedName}} 
                     </div>
