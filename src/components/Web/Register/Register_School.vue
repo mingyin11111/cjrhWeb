@@ -3,7 +3,7 @@
     <el-container>
         <el-main v-loading="loading">
             <el-row>
-                <div style="height: 80px;"></div>
+                 
                 <el-col :span="24">
                     <div class="grid-content bg-purple-dark" style="margin-bottom: 10px;">
                         <div style="display: inline; cursor: pointer">学校注册&gt;</div>

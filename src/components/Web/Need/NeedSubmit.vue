@@ -1,7 +1,6 @@
 <template>
     <el-container>
         <el-main v-loading="loading">
-            <div style="height: 80px;"></div>
             <span style="font-size: 14px;margin-top: 5px;display: inline-block;"><span @click="ToMyNeedList"
                     style="cursor: pointer;"> 我的需求</span> &gt; 需求详情&nbsp;&nbsp;|&nbsp;{{
                         NeedModel.Title }}</span>

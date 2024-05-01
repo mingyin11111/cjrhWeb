@@ -1,61 +1,89 @@
 <template>
     <el-container>
         <el-main style="padding: 0px;;">
-            <el-row style="padding-top: 5px;background-color: white;opacity: 1; position: fixed; z-index: 200;width: 100%;margin-top: -5px;border-bottom-style: solid;border-bottom-width: thin;border-bottom-color: #36394d;">
-                <el-col :span="2">
+            <el-row>
+                <div style="background: #333333;  height: 36px;  line-height: 36px;color: #fff;">
+                    <div class="el-col el-col-4"> &nbsp;</div>
+                    <div class="el-col el-col-16" style="font-size: 12px;">
+                        欢迎访问上海市工商联信息技术商会产教融合专业委员会官方网站！
+                        <div style="float: right;font-size: 12px;">
+                            <li class="el-icon-phone-outline"> </li>
+                            新浪微博
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <li class="el-icon-phone-outline"> </li>
+                            服务热线：021-54306082（总机）
+                        </div>
+                    </div>
+                </div>
+            </el-row>
+            <el-row
+                style="padding-top: 5px;background-color: white;opacity: 1  ;width: 100%;margin-top: -5px;border-bottom-style: solid;border-bottom-width: thin;border-bottom-color: #36394d;">
+
+                <el-col :span="4">
                     <div>&nbsp;</div>
                 </el-col>
-                <el-col :span="20">
-                    <table style="width:100%; font-size: medium;">
+                <el-col :span="16">
+                    <table style="width:100%; font-size: medium;padding-top: 20px;padding-bottom: 20px;">
                         <tr>
-                           
-                            <td style="width: 51px;"> <img :src="LogoPic" style="width:200px;  "> </td>
-                            <td style="width: 30px;">&nbsp;</td>
-                            <td><el-button type="text" style="font-size: 18px;" @click="ToIndex" >首页</el-button></td>
-                            <td><el-button type="text" style="font-size: 18px;" @click="ToNeeds">需求大厅</el-button></td>
-                            <td><el-button type="text"  style="font-size: 18px;" @click="InformationShow"  >信息中心</el-button></td>
-                            <td><el-button type="text" style="font-size: 18px;" @click="ToResourceList" >资源共享</el-button></td>
-                            <td><el-button type="text" style="font-size: 18px;" >专项竞赛</el-button> </td>
+                            <td style="width: 51px;"> <img :src="LogoPic"> </td>
                             <td align="right">
                                 <table>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
+                                        <td><img :src="LogoPic2"> </td>
+
                                     </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+
                                 </table>
 
-                                <div>
-                                    <div style="display: block;width: 100px;float: right;margin-right: 15px;">
-                                        <el-button  v-if="$store.state.MemberName==''"  type="primary"  size="small" @click="ToLogin">登录</el-button>
-                                    </div>
-                                    <div style="display: block;width: 400px;float: right;">
-                                        <el-popover placement="bottom-start" width="100" trigger="hover" class="Myself">
-                                            <ul>
-                                                <li @click="ToMyCenter">我的需求</li>
-                                                <li @click="ToMyCenter">我的投标</li>
-                                                <li>修改密码</li>
-                                                <li  @click="ToLoginOut" >注销登录</li>
-                                            </ul>
-                                            <span slot="reference" style="cursor: pointer;">{{ $store.state.MemberName }}</span>
-                                        </el-popover>
-                                        <div> {{ $store.state.UnitName }}</div>
-                                    </div>
-
-                                </div>
 
                             </td>
                         </tr>
                     </table>
                 </el-col>
-                <el-col :span="2">
+                <el-col :span="4">
                     <div>&nbsp;</div>
                 </el-col>
+
             </el-row>
-       
+            <el-row>
+                <div class="bar" style="   height: 60px;   color: #fff;">
+                    <div class="el-col el-col-4"> &nbsp;</div>
+                    <div class="el-col el-col-16" style="font-size: 20px;">
+                        <table id="mybar" style="width:100%; height: 60px;   color: white;">
+                            <tr>
+                                <td @click="ToIndex" align="center"> 首页 </td>
+                                <td @click="ToNeeds" align="center"> 需求大厅</td>
+                                <td @click="InformationShow" align="center"> 信息中心</td>
+                                <td @click="ToResourceList" align="center"> 资源共享</td>
+                                <td align="center"> 专项竞赛</td>
+                                <td style="width:200px;font-size: 14px;" align="right">
+                                    <div>
+                                        <div style="display: block;width: 50px;float: right;margin-right: 15px;">
+                                            <el-button v-if="$store.state.MemberName == ''" type="primary" size="small"
+                                                @click="ToLogin">登录</el-button>
+                                        </div>
+                                        <div style="display: block;width: 100%;float: right;">
+                                            <el-popover placement="bottom-start" visible-arrow="false" width="100"
+                                                trigger="hover" class="Myself">
+                                                <ul>
+                                                    <li @click="ToMyCenter">我的需求</li>
+                                                    <li @click="ToMyCenter">我的投标</li>
+                                                    <li>修改密码</li>
+                                                    <li @click="ToLoginOut">注销登录</li>
+                                                </ul>
+                                                <span slot="reference" style="cursor: pointer;">{{
+                                                    $store.state.MemberName }}</span>
+                                            </el-popover>
+                                            <div> {{ $store.state.UnitName }}</div>
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </el-row>
             <el-row>
                 <el-col :span="4">
                     <div>&nbsp; </div>
@@ -85,18 +113,117 @@
                     <div>&nbsp;</div>
                 </el-col>
             </el-row>
-            <el-row style="background-color: #363636;border-top-style: solid; border-top-width: 1px; border-top-color: white;">
+            <el-row style="background-color: #0168ad;border-top-style: solid;border-top-width: 1px;  border-top-color:white;">
+                <el-col :span="24">
+                    <table style="color:#0168ad;width: 100%;margin-top: 20px;margin-bottom: 50px;">
+                        <tr>
+                            <td style="width: 100%;" valign="top" align="center" colspan="32">
+                                    
+                                        <ul id="ftmeau" style="display: inherit;">
+                                            
+                                            <li class="menu-item1" style="border-right-width: thin;  border-right-style: dashed;  border-right-color: white;">
+                                                <img src="../img/fico1.png"/>
+                                                <br/>
+                                                <a style="font-size: 18px;" href="https://www.chanjiao.org.cn/?cat=56">信息公开</a>
+                                                <ul class="sub-menu">
+                                                    <li id="menu-item-6945"
+                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6945">
+                                                        <a href="https://www.chanjiao.org.cn/?cat=57">通知公告</a>
+                                                    </li>
+                                                    <li id="menu-item-6944"
+                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6944">
+                                                        <a href="https://www.chanjiao.org.cn/?cat=58">资讯快报</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="menu-item1" style="border-right-width: thin;  border-right-style: dashed;  border-right-color: white;">
+                                                <img src="../img/fico2.png"/>
+                                                <br/>
+                                                <a style="font-size: 18px;"  href="https://www.chanjiao.org.cn/?cat=62">行业资讯</a>
+                                                <ul class="sub-menu">
+                                                    <li id="menu-item-6949"
+                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6949">
+                                                        <a href="https://www.chanjiao.org.cn/?cat=64">行业动态</a>
+                                                    </li>
+                                                    <li id="menu-item-6946"
+                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category current-menu-item menu-item-6946">
+                                                        <a href="https://www.chanjiao.org.cn/?cat=63"
+                                                            aria-current="page">政策法规</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="menu-item1" style="border-right-width: thin;  border-right-style: dashed;  border-right-color: white;">
+                                                <img src="../img/fico3.png"/>
+                                                <br/>
+                                                <a style="font-size: 18px;"  href="https://www.chanjiao.org.cn/?cat=59">发起单位</a>
+                                                <ul class="sub-menu">
+                                                    <li id="menu-item-6948"
+                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6948">
+                                                        <a href="https://www.chanjiao.org.cn/?cat=61">主任单位</a>
+                                                    </li>
+                                                    <li id="menu-item-6947"
+                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6947">
+                                                        <a href="https://www.chanjiao.org.cn/?cat=60">副主任单位</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="menu-item1" style="border-right-width: thin;  border-right-style: dashed;  border-right-color: white;">
+                                                <img src="../img/fico4.png"/>
+                                                <br/>
+                                                <a style="font-size: 18px;"  href="https://www.chanjiao.org.cn/?page_id=6890">会员服务</a>
+                                                <ul class="sub-menu">
+                                                    <li id="menu-item-6954"
+                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6954">
+                                                        <a href="https://www.chanjiao.org.cn/?page_id=6926">工作规则</a>
+                                                    </li>
+                                                    <li id="menu-item-6952"
+                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6952">
+                                                        <a href="https://www.chanjiao.org.cn/?page_id=6894">入会申请</a>
+                                                    </li>
+                                                    <li id="menu-item-6951"
+                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6951">
+                                                        <a href="https://www.chanjiao.org.cn/?page_id=6895">入会流程</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="menu-item1">
+                                                <img src="../img/fico5.png"/>
+                                                <br/>
+                                                <a style="font-size: 18px;"  href="https://www.chanjiao.org.cn/?cat=65">专家智库</a>
+                                                <ul class="sub-menu">
+                                                    <li id="menu-item-6943"
+                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6943">
+                                                        <a href="https://www.chanjiao.org.cn/?cat=67">智库成员</a>
+                                                    </li>
+                                                    <li id="menu-item-6942"
+                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6942">
+                                                        <a href="https://www.chanjiao.org.cn/?cat=66">专家观点</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </el-col>
+            </el-row>
+            <el-row
+                style="background-color: #363636;border-top-style: solid; border-top-width: 2px; border-top-color: white;">
                 <el-col :span="2">
                     <div>&nbsp; </div>
                 </el-col>
                 <el-col :span="20">
                     <table style="color:#0168ad;width: 100%;">
                         <tr>
-                            <td style="width: 100%; color: white; font-size: 14px;padding: 10px;" valign="top" align="center" colspan="32">
-                                 
-地址：电话：021-54306082（总机）<br>
+                            <td style="width: 100%; color: white; font-size: 14px;padding: 20px; line-height: 30px;"
+                                valign="top" align="center" colspan="32">
 
-Copyright @ 2024 上海市工商联信息技术商会产教融合专业委员会 版权所有      ICP备案编号：沪ICP备2020031101号-5
+                                地址：电话：021-54306082（总机）<br>
+
+                                Copyright @ 2024 上海市工商联信息技术商会产教融合专业委员会 版权所有 ICP备案编号：沪ICP备2020031101号-5
 
                             </td>
                         </tr>
@@ -109,7 +236,7 @@ Copyright @ 2024 上海市工商联信息技术商会产教融合专业委员会
         </el-main>
     </el-container>
 </template>
-  
+
 <script>
 import VueRouter from 'vue-router';
 import { mapMutations } from "vuex";
@@ -121,17 +248,22 @@ export default {
             imgUrl: '',
             imgQRCode: '',
             MemberName: '',
-            LogoPic:'',
-            footerPic:''
+            LogoPic: '',
+            LogoPic2: '',
+            footerPic: '',
+
         };
     },
     created() {
         let urlTemp = "assets/mainpic.png";
         this.imgUrl = require("@/" + urlTemp);
         this.imgQRCode = require("@/" + "assets/qrcocepic.png");
-        this.LogoPic=require("@/" + "assets/logo_1.jpg");
-        this.footerPic=require("@/" + "assets/footer.png");
-        
+        this.LogoPic = require("@/" + "assets/logo_1.jpg");
+        this.LogoPic2 = require("@/" + "assets/logo_2.png");
+        this.footerPic = require("@/" + "assets/footer.png");
+
+
+
     },
     mounted() {
         let url = document.location.href;
@@ -145,29 +277,27 @@ export default {
         ...mapMutations(["changeUnitName"]),
         ...mapMutations(["changeUserType"]),
         ...mapMutations(["changeMemberID"]),
-        ToLoginOut()
-        {
-            
+        ToLoginOut() {
+
             this.$confirm("你确定要注销登录吗？", "提示", {
-            confirmButtonText: "确定",
-            cancelButtonText: "取消",
-            type: "warning",
-            center: true,
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning",
+                center: true,
             }).then(() => {
                 //将用户token保存到vuex中
                 this.changeToken("");
                 this.changeMemberName("");
-                this.changeUnitName( "");
-                this.changeUserType(  "");
-                this.changeMemberID(  "");
+                this.changeUnitName("");
+                this.changeUserType("");
+                this.changeMemberID("");
             })
-            .catch(() => {
-            
-            });
-           
+                .catch(() => {
+
+                });
+
         },
-        ToMyCenter()
-        {
+        ToMyCenter() {
             this.$router.push({ path: '/Web/MyCenter/MyCenter' });
         },
         ToNeeds() {
@@ -185,24 +315,61 @@ export default {
         ToResourceList() {
             this.$router.push({ path: '/Web/Resource/ResourceList' });
         },
-        
+
     },
     components: { VueRouter }
 };
 </script>
 <style scoped>
-.el-popover   ul{
+.el-popover ul {
     list-style: none;
     padding: 5px;
 }
-.el-popover   ul li{
+
+.el-popover ul li {
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-bottom-color: rgb(122, 118, 118);
-   padding-top: 10px;
-   padding-bottom: 5px;
-   cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    cursor: pointer;
 }
 
+.bar {
+    background-image: url('../img/bg_menu.png');
+}
+
+#mybar td:hover {
+    background: rgba(0, 54, 93, .3);
+    color: white;
+}
+
+#mybar td {
+    cursor: pointer
+}
+
+.menu-item1 {
+    float: left;
+    width: 220px;
+    line-height: 35px;
+}
+
+.menu-item1 a{
+    text-decoration: none;
+    color: #b1daf8;
+    
+}
+.menu-item1 a:hover{
+    text-decoration: none;
+    color: white;
+}
+.menu-item1   a:visited{
+    text-decoration: none;
+    color: b1daf8;
+}
+.menu-item1 > ul{
+    line-height: 25px;
+    padding: 0px;
+    font-size: 14px;
+}
 </style>
-  

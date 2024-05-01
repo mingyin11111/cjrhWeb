@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-main>
-      <div style="height: 70px;"></div>
+
       <el-carousel indicator-position="outside">
         <el-carousel-item key="item1">
           <el-image :src="imgUrl" style="width: 100%;height: 300px;margin-bottom: 10px;"></el-image>
