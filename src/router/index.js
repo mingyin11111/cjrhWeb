@@ -40,6 +40,10 @@ const router = new Router({
           component: () => import('@/components/Web/MyCenter/MyCenter'),
         },
         {
+          path: '/Web/MyCenter/MySubmit',
+          component: () => import('@/components/Web/MyCenter/MySubmit'),
+        },
+        {
           path: '/Web/MyCenter/ViewMyNeed',
           component: () => import('@/components/Web/MyCenter/ViewMyNeed'),
         },

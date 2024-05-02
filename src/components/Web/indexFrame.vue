@@ -67,7 +67,7 @@
                                                 trigger="hover" class="Myself">
                                                 <ul>
                                                     <li @click="ToMyCenter">我的需求</li>
-                                                    <li @click="ToMyCenter">我的投标</li>
+                                                    <li @click="ToMyNeedSubmit">我的投标</li>
                                                     <li>修改密码</li>
                                                     <li @click="ToLoginOut">注销登录</li>
                                                 </ul>
@@ -331,7 +331,10 @@ export default {
         ToMyCenter() {
             this.$router.push({ path: '/Web/MyCenter/MyCenter' });
         },
-       
+        ToMyNeedSubmit()
+        {
+            this.$router.push({ path: '/Web/MyCenter/MySubmit' });
+        },
         ToLogin() {
             this.$router.push({ path: '/Web/Login' });
         },

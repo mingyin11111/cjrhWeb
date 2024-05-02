@@ -25,7 +25,7 @@
                      </ul> 
                 </el-col>
                 <el-card class="box-card" style="margin-top: 10px;margin-bottom: 10px;">
-                    <div style="width: 100%;"  v-for="item in pageinfo.PageData">
+                    <div style="width: 100%;"  v-for="item in pageinfo.PageData" v-loading="loading">
                         <table style="width: 100%;border-bottom-width: 1px;border-bottom-style: solid;border-bottom-color: #ebeef5    ;">
                             <tr>
                                 <td  >

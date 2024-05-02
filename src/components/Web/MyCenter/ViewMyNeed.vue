@@ -37,8 +37,8 @@
                                 <tr>
                                     <td style="color: rgb(129, 128, 128);  ">附件</td>
                                     <td style="padding: 10px;">
-                                        <ul style="list-style: none;margin: 0px;padding-left: 0px;">
-                                            <li v-for="item in NeedModel.Attachment.split('|')" 
+                                        <ul style="list-style: none;margin: 0px;padding-left: 0px;" v-if="NeedModel.Attachment">
+                                            <li  v-for="item in NeedModel.Attachment.split('|')" 
                                                 @click="DownLoadSubmitFile(item.split('*')[0])"
                                                 style="cursor: pointer;color: cornflowerblue;padding-bottom: 5px;">
                                                 {{ item.split('*')[1] }}
