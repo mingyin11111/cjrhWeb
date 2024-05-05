@@ -38,6 +38,7 @@
                     :src="scope.row.Logo" fit="scale-down"></el-image>
                 </template>
               </el-table-column>
+              <el-table-column prop="State" label="状态" width="150"> </el-table-column>
               <el-table-column fixed="right" label="操作" width="150" align="center">
                 <template slot-scope="scope">
                   <el-button @click="Edit_Company(scope.row)" type="text" size="medium">
@@ -88,9 +89,13 @@
                 style=" border-style: solid;    border-color: #a69fe2;    border-width: 1px;"></i>
             </el-upload>
           </el-form-item>
+         
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="editerdialogVisible = false">取 消</el-button>
+          <el-button v-if="module.State === '待审核'" type="primary" @click="doShenHeTongGuo('审核通过')">审核通过</el-button>
+          <el-button v-if="module.State === '待审核'" type="primary" @click="doShenHeTongGuo('审核不通过')">审核不通过</el-button>
+          <el-button v-else type="primary" @click="doShenHeTongGuo('待审核')">取消审核</el-button>
           <el-button v-if="editerdialogTitle === '编辑'" type="primary" @click="doUpdate">确 定</el-button>
           <el-button v-if="editerdialogTitle != '编辑'" type="primary" @click="doCheckAdd">确 定</el-button>
         </div>
@@ -123,6 +128,103 @@ export default {
     this.GetList(1);
   },
   methods: {
+    doShenHeTongGuo(state) {
+      var _this = this;
+      var qs = require("qs");
+      this.$axios({
+        method: "patch",
+        url: "/api/company/" + this.module.id,
+        data: qs.stringify({
+          State: state
+        }),
+      })
+        .then((response) => {
+          if (response.data.data) {
+            if(state=='审核通过')
+            {
+              this.ShenHeMember(this.module.id,'在职');
+            }
+            if(state=='审核不通过')
+            {
+              this.ShenHeMember(this.module.id,'审核不通过');
+            }
+            if(state=='待审核')
+            {
+              this.ShenHeMember(this.module.id,'待审核');
+            }
+            
+          } else if (response.data == "ReLogin") {
+            this.$message.error("你的登录已超时，请重新登录！！");
+          } else {
+            this.$message({
+              type: "info",
+              message: "审核失败，请重试",
+            });
+          }
+          this.editerdialogVisible = false;
+        })
+        .catch(function (error) {
+          _this.$message.error("出错了：" + error);
+        });
+
+    },
+    ShenHeMember(id,state) {
+      var qs = require("qs");
+      this.$axios({
+        method: "get",
+        url: "/api/systemMember?UserType=公司&RelationValue=" + id,
+        data: qs.stringify({
+        }),
+      })
+        .then((res) => {
+          if (res.data.err == 0) {
+            var list = res.data.data.rows;
+            if (list.length == 0) {
+              this.$message.error("审核完成，无用户需要审核");
+              return;
+            }
+            this.$axios({
+              method: "patch",
+              url: "/api/systemMember/" + list[0].id,
+              data: qs.stringify({
+                State: state
+              }),
+            })
+              .then((response) => {
+                if (response.data.data) {
+                  
+                  this.$message({
+                    type: "success",
+                    message: "审核完成!",
+                  });
+                  this.GetList(this.pageinfo.CurrentPageNumber);
+                } else if (response.data == "ReLogin") {
+                  this.$message.error("你的登录已超时，请重新登录！！");
+                } else {
+                  this.$message({
+                    type: "info",
+                    message: "审核失败，请重试",
+                  });
+                }
+                this.editerdialogVisible = false;
+              })
+              .catch(function (error) {
+                _this.$message.error("出错了：" + error);
+              });
+            this.loading = false;
+          }
+          else {
+            this.$message.error("错误：" + res.data.err);
+          }
+
+        })
+        .catch((error) => {
+          this.$message.error("登录中出错！");
+          console.log(error);
+          this.loading = false;
+        });
+    },
+
     formatLen(str, len) {
             if (str == null)
                 return "";

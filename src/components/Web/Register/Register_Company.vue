@@ -31,7 +31,7 @@
                             <el-form-item label="Logo" prop="Logo" :label-width="formLabelWidth">
                                 <el-upload class="avatar-uploader" action="/api/upload/fileupload"
                                     :show-file-list="false" :on-success="UpLoadSuccess"
-                                    :headers="{ 'token': tokenValue }">
+                                    :headers="{ 'token': tokenValue,'Register':'Company' }">
                                     <img v-if="module.Logo" :src="module.Logo" class="avatar">
                                     <i v-else class="el-icon-plus avatar-uploader-icon"
                                         style=" border-style: solid;    border-color: #a69fe2;    border-width: 1px;"></i>
@@ -187,6 +187,7 @@ export default {
                     Logo: this.module.Logo,
                     Memo: this.module.Memo,
                     Address: this.module.Address,
+                    State: '待审核',
                 }),
             })
                 .then((response) => {
@@ -218,7 +219,7 @@ export default {
                     LoginName: this.module.LoginName,
                     PhoneNumber: this.module.PhoneNumber,
                     UnitName: this.module.Name,
-                    State: '在职',
+                    State: '待审核',
                     RelationKEY: 'T_Company',
                     RelationValue: companyid,
                     UserType: '公司',

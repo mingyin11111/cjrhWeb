@@ -24,11 +24,11 @@
               v-loading="loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading"
               element-loading-background="rgba(0, 0, 0, 0.8)">
               <el-table-column prop="Name" label="学校名称"> </el-table-column>
-              <el-table-column prop="Memo" label="简介"> 
+              <el-table-column prop="Memo" label="简介">
                 <template slot-scope="scope">
-                 {{ formatLen(scope.row.Memo,150) }}
+                  {{ formatLen(scope.row.Memo, 150) }}
                 </template>
-                
+
               </el-table-column>
               <el-table-column prop="LinkMan" label="联系人" width="150"> </el-table-column>
               <el-table-column prop="Phote" label="联系电话" width="150"> </el-table-column>
@@ -39,6 +39,7 @@
                     :src="scope.row.Logo" fit="scale-down"></el-image>
                 </template>
               </el-table-column>
+              <el-table-column prop="State" label="状态" width="150"> </el-table-column>
               <el-table-column fixed="right" label="操作" width="150" align="center">
                 <template slot-scope="scope">
                   <el-button @click="Edit_School(scope.row)" type="text" size="medium">
@@ -79,7 +80,7 @@
             <el-input v-model="module.Phote" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="简介" :label-width="formLabelWidth">
-            <el-input type="textarea" :rows="7" placeholder="请输入简介" v-model="module.Memo" ></el-input>
+            <el-input type="textarea" :rows="7" placeholder="请输入简介" v-model="module.Memo"></el-input>
           </el-form-item>
           <el-form-item label="Logo" :label-width="formLabelWidth">
             <el-upload class="avatar-uploader" action="/api/upload/fileupload" :show-file-list="false"
@@ -92,6 +93,9 @@
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="editerdialogVisible = false">取 消</el-button>
+          <el-button v-if="module.State === '待审核'" type="primary" @click="doShenHeTongGuo('审核通过')">审核通过</el-button>
+          <el-button v-if="module.State === '待审核'" type="primary" @click="doShenHeTongGuo('审核不通过')">审核不通过</el-button>
+          <el-button v-else type="primary" @click="doShenHeTongGuo('待审核')">取消审核</el-button>
           <el-button v-if="editerdialogTitle === '编辑'" type="primary" @click="doUpdate">确 定</el-button>
           <el-button v-if="editerdialogTitle != '编辑'" type="primary" @click="doCheckAdd">确 定</el-button>
         </div>
@@ -125,16 +129,113 @@ export default {
   },
   methods: {
     formatLen(str, len) {
-            if (str == null)
-                return "";
-            var len11 = str.length; //row 表示一行数据,
-            if (len11 > len) {
-                return str.substring(0, len) + "...";
+      if (str == null)
+        return "";
+      var len11 = str.length; //row 表示一行数据,
+      if (len11 > len) {
+        return str.substring(0, len) + "...";
+      }
+      else {
+        return str;
+      }
+    },
+    doShenHeTongGuo(state) {
+      var _this = this;
+      var qs = require("qs");
+      this.$axios({
+        method: "patch",
+        url: "/api/school/" + this.module.id,
+        data: qs.stringify({
+          State: state
+        }),
+      })
+        .then((response) => {
+          if (response.data.data) {
+            if(state=='审核通过')
+            {
+              this.ShenHeMember(this.module.id,'在职');
             }
-            else {
-                return str;
+            if(state=='审核不通过')
+            {
+              this.ShenHeMember(this.module.id,'审核不通过');
             }
-        },
+            if(state=='待审核')
+            {
+              this.ShenHeMember(this.module.id,'待审核');
+            }
+            
+          } else if (response.data == "ReLogin") {
+            this.$message.error("你的登录已超时，请重新登录！！");
+          } else {
+            this.$message({
+              type: "info",
+              message: "审核失败，请重试",
+            });
+          }
+          this.editerdialogVisible = false;
+        })
+        .catch(function (error) {
+          _this.$message.error("出错了：" + error);
+        });
+
+    },
+    ShenHeMember(id,state) {
+      var qs = require("qs");
+      this.$axios({
+        method: "get",
+        url: "/api/systemMember?UserType=学校&RelationValue=" + id,
+        data: qs.stringify({
+        }),
+      })
+        .then((res) => {
+          if (res.data.err == 0) {
+            var list = res.data.data.rows;
+            if (list.length == 0) {
+              this.$message.error("审核完成，无用户需要审核");
+              return;
+            }
+            this.$axios({
+              method: "patch",
+              url: "/api/systemMember/" + list[0].id,
+              data: qs.stringify({
+                State: state
+              }),
+            })
+              .then((response) => {
+                if (response.data.data) {
+                  
+                  this.$message({
+                    type: "success",
+                    message: "审核完成!",
+                  });
+                  this.GetList(this.pageinfo.CurrentPageNumber);
+                } else if (response.data == "ReLogin") {
+                  this.$message.error("你的登录已超时，请重新登录！！");
+                } else {
+                  this.$message({
+                    type: "info",
+                    message: "审核失败，请重试",
+                  });
+                }
+                this.editerdialogVisible = false;
+              })
+              .catch(function (error) {
+                _this.$message.error("出错了：" + error);
+              });
+            this.loading = false;
+          }
+          else {
+            this.$message.error("错误：" + res.data.err);
+          }
+
+        })
+        .catch((error) => {
+          this.$message.error("登录中出错！");
+          console.log(error);
+          this.loading = false;
+        });
+    },
+
     doUpdate() {
       var _this = this;
       var qs = require("qs");
