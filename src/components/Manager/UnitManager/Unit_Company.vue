@@ -24,7 +24,11 @@
               v-loading="loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading"
               element-loading-background="rgba(0, 0, 0, 0.8)">
               <el-table-column prop="Name" label="企业名称"> </el-table-column>
-              <el-table-column prop="Memo" label="简介"> </el-table-column>
+              <el-table-column prop="Memo" label="简介"> 
+                <template slot-scope="scope">
+                 {{ formatLen(scope.row.Memo,150) }}
+                </template>
+              </el-table-column>
               <el-table-column prop="LinkMan" label="联系人" width="150"> </el-table-column>
               <el-table-column prop="Phone" label="联系电话" width="150"> </el-table-column>
               <el-table-column prop="Logo" label="Logo" width="120">
@@ -74,7 +78,7 @@
             <el-input v-model="module.Phone" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="简介" :label-width="formLabelWidth">
-            <el-input type="textarea" :rows="3" placeholder="请输入简介" v-model="module.Memo"></el-input>
+            <el-input type="textarea" :rows="7" placeholder="请输入简介" v-model="module.Memo"></el-input>
           </el-form-item>
           <el-form-item label="Logo" :label-width="formLabelWidth">
             <el-upload class="avatar-uploader" action="/api/upload/fileupload" :show-file-list="false"
@@ -119,6 +123,17 @@ export default {
     this.GetList(1);
   },
   methods: {
+    formatLen(str, len) {
+            if (str == null)
+                return "";
+            var len11 = str.length; //row 表示一行数据,
+            if (len11 > len) {
+                return str.substring(0, len) + "...";
+            }
+            else {
+                return str;
+            }
+        },
     doUpdate() {
       var _this = this;
       var qs = require("qs");
