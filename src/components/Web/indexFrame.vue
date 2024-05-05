@@ -327,6 +327,7 @@ export default {
         ToZhuangXiangJingSaiList()
         {
             this.selectMenuIndex=5;
+            this.$router.push({ path: '/Web/Competition/CompetitionList' });
         },
         ToMyCenter() {
             this.$router.push({ path: '/Web/MyCenter/MyCenter' });

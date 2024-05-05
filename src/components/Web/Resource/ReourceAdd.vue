@@ -133,7 +133,7 @@ export default {
 
             this.$message({
               type: "info",
-              message: "添加失败，请重试" + response.data.err,
+              message: "添加失败，请重试" + response.data.err+response.data.errMsg,
             });
           }
           this.loading = false;

@@ -47,7 +47,7 @@
             <i class="el-icon-document"></i>
             <span slot="title">资源共享</span>
           </el-menu-item>
-          <el-menu-item index="config">
+          <el-menu-item index="/Manager/Competition/CompetitionList">
             <i class="el-icon-s-tools"></i>
             <span slot="title">专项竞赛</span>
           </el-menu-item>

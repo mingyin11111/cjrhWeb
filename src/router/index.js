@@ -96,6 +96,15 @@ const router = new Router({
           path: '/Web/Register/Register_Company',
           component: () => import('@/components/Web/Register/Register_Company'),
         },
+        {
+          path: '/Web/Competition/CompetitionList',
+          component: () => import('@/components/Web/Competition/CompetitionList'),
+        },
+        {
+          path: '/Web/Competition/ShowContent',
+          component: () => import('@/components/Web/Competition/ShowContent'),
+        },
+        
         
       ]
     },
@@ -181,6 +190,17 @@ const router = new Router({
           path: '/Manager/ResourceManager/ResourceList',
           component: () => import('@/components/Manager/ResourceManager/ResourceList'),
         },
+        {
+          path: '/Manager/Competition/CompetitionList',
+          component: () => import('@/components/Manager/Competition/CompetitionList'),
+        },
+        {
+          path: '/Manager/Competition/Add',
+          component: () => import('@/components/Manager/Competition/Add'),
+        },
+       
+        
+        
       ]
     }
 
