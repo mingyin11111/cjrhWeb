@@ -145,7 +145,7 @@
       <div class="wow animate__animated animate__zoomIn" >
         <span
           style=" font-size: 38px;font-weight: bold;text-align: center;display: inline-block; width: 100%;padding: 10px;">
-          企事成员
+          企业成员
         </span>
         <el-row :gutter="10" justify="space-between">
 
