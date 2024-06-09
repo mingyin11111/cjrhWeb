@@ -1,4 +1,5 @@
 <template>
+    
     <el-container>
         <el-main style="padding: 0px;;">
             <el-row>
@@ -84,9 +85,23 @@
                     </div>
                 </div>
             </el-row>
+<el-row   v-if="$IsWebIndex==1">
+  <el-col :span="24">
+    
+    <el-carousel  height="520px">
+        <el-carousel-item key="item1">
+          <el-image :src="imgUrl3" style="width: 100%;height: 520px;margin-bottom: 10px;"></el-image>
+        </el-carousel-item>
+        <el-carousel-item key="item2">
+          <el-image :src="imgUrl2" style="width: 100%;height: 520px;margin-bottom: 10px;"></el-image>
+        </el-carousel-item>
+      </el-carousel>
+</el-col>
+</el-row>
+
             <el-row>
                 <el-col :span="4">
-                    <div>&nbsp; </div>
+                    <div>&nbsp;  </div>
                 </el-col>
                 <el-col :span="16">
                     <router-view />
@@ -250,6 +265,8 @@ export default {
     name: "Index",
     data() {
         return {
+            imgUrl3: '',
+            imgUrl2:'',
             loading: true,
             imgUrl: '',
             imgQRCode: '',
@@ -261,6 +278,11 @@ export default {
         };
     },
     created() {
+
+         
+    this.imgUrl3 = require("@/components/img/bg.jpg" );
+    this.imgUrl2 = require("@/components/img/bg2.jpg");
+
         let urlTemp = "assets/mainpic.png";
         this.imgUrl = require("@/" + urlTemp);
         this.imgQRCode = require("@/" + "assets/qrcocepic.png");

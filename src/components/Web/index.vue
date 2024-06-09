@@ -1,122 +1,65 @@
 <template>
   <el-container>
     <el-main>
-
-      <el-carousel indicator-position="outside">
-        <el-carousel-item key="item1">
-          <el-image :src="imgUrl" style="width: 100%;height: 300px;margin-bottom: 10px;"></el-image>
-        </el-carousel-item>
-        <el-carousel-item key="item2">
-          <el-image :src="imgUrl2" style="width: 100%;height: 300px;margin-bottom: 10px;"></el-image>
-        </el-carousel-item>
-      </el-carousel>
  
-      <div style="background-color: #8cc5ff;">
+      <div  class="hot_services wow animate__animated animate__zoomIn">
         <span
           style=" font-size: 38px;font-weight: bold;text-align: center;display: inline-block; width: 100%;padding: 10px;">
           热门服务
         </span>
         <el-row :gutter="10" justify="space-between" style="text-align: center">
           <el-col :span="3">
-            <div class="zi zi1" style="cursor: pointer;" @click="LinkTo('课程开发')"> </div>
-            <h3 style="cursor: pointer;" @click="LinkTo('课程开发')">课程开发</h3>
+            <el-card shadow="hover" class="showfindIn">
+              <div class="zi zi1" style="cursor: pointer;" @click="LinkTo('课程开发')"> </div>
+              <h3 style="cursor: pointer;" @click="LinkTo('课程开发')">课程开发</h3>
+           </el-card>
           </el-col>
           <el-col :span="3">
+            <el-card shadow="hover" class="showfindIn">
             <div class="zi zi2" style="cursor: pointer;" @click="LinkTo('虚拟仿真')"> </div>
             <h3 style="cursor: pointer;" @click="LinkTo('虚拟仿真')"> 虚拟仿真</h3>
+          </el-card>
           </el-col>
           <el-col :span="3">
+            <el-card shadow="hover" class="showfindIn"> 
             <div class="zi  zi3" style="cursor: pointer;" @click="LinkTo('微课制作')"> </div>
             <h3 style="cursor: pointer;" @click="LinkTo('微课制作')"> 微课制作</h3>
+          </el-card>
           </el-col>
           <el-col :span="3">
+            <el-card shadow="hover" class="showfindIn"> 
             <div class="zi  zi4" style="cursor: pointer;" @click="LinkTo('教师教学能力大赛')"> </div>
             <h3 style="cursor: pointer;" @click="LinkTo('教师教学能力大赛')">教学能力</h3>
+          </el-card>
           </el-col>
           <el-col :span="3">
+            <el-card shadow="hover" class="showfindIn">
             <div class="zi zi5" style="cursor: pointer;" @click="LinkTo('实训室建设')"> </div>
             <h3 style="cursor: pointer;" @click="LinkTo('实训室建设')">实训室建设</h3>
+          </el-card>
           </el-col>
           <el-col :span="3">
+            <el-card shadow="hover" class="showfindIn">
             <div class="zi zi6" style="cursor: pointer;" @click="LinkTo('智能硬件')"> </div>
             <h3 style="cursor: pointer;" @click="LinkTo('智能硬件')">智能硬件</h3>
+          </el-card>
           </el-col>
           <el-col :span="3">
+            <el-card shadow="hover" class="showfindIn">
             <div class="zi zi7" style="cursor: pointer;" @click="LinkTo('其他')"> </div>
             <h3 style="cursor: pointer;" @click="LinkTo('其他')">ppt制作</h3>
+          </el-card>
           </el-col>
           <el-col :span="3">
+            <el-card shadow="hover" class="showfindIn">
             <div class="zi zi8" style="cursor: pointer;" @click="LinkTo('其他')"> </div>
             <h3 style="cursor: pointer;" @click="LinkTo('其他')">视频制作</h3>
+          </el-card>
           </el-col>
         </el-row>
       </div>
-      <div style="background-color: #a0cfff; text-align: center; display: none;">
-        <el-row :gutter="10" justify="space-between">
-
-          <el-col :span="8" class="elcol-l">
-            <span class="red-dot"></span>订单中心
-            <ul>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-            </ul>
-
-          </el-col>
-          <el-col :span="8" class="elcol-l">
-            <span class="yellow-dot"></span>优质案例
-            <ul>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后</li>
-            </ul>
-          </el-col>
-          <el-col :span="8" class="elcol-l">
-            <span class="blue-dot"></span>平台公告
-            <ul>
-
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
-              <li>是支付宝面向支付宝用户端提供的产品。商家可在用户下单并授权后 </li>
-
-
-            </ul>
-          </el-col>
-        </el-row>
-
-
-      </div>
-
-      <div>
-        <span
-          style=" font-size: 38px;font-weight: bold;text-align: center;display: inline-block; width: 100%;padding: 10px;">
-          优质服务商
-        </span>
-        <el-row :gutter="10" justify="space-between">
-
-          <el-col :span="6" class="elcol-l2" v-for="item in SchoolList" :key="item.id" style="text-align: center;">
-            <el-card shadow="always">
-              <p style="text-align: left;cursor:pointer;" @click="ToInformationDetail_School(item)">
-                <img :src="item.Logo"
-                  style=" height: 25px;width: 25px;border: 1px solid #99a9bf;border-radius: 50%;display: inline-block;align-content: center;  vertical-align: middle;">
-                  <el-link :underline="false" style="font-size: 16px;">{{ item.Name }}</el-link>
-              </p>
-              <img :src="item.Logo" @click="ToInformationDetail_School(item)"
-                style="cursor:pointer; height: 180px;  margin-top: 8px;  width: 180px;  border: 1px solid #99a9bf;  border-radius: 5px;  align-content: center;  background-color: blueviolet;  display: inline-block;">
-              <p style="color: #606266;">{{ subStr(item.Memo, 12) }}</p>
-              <p style="color: #8c6266;">
-                <i class="el-icon-user-solid"></i>{{ item.LinkMan }}
-              </p>
-              <p style="color: #8c6266;">电话：{{ item.Phote }}</p>
-            </el-card>
-
-          </el-col>
-
-        </el-row>
-      </div>
-
       <div style="height: 10px;"></div>
-      <div style="background-color: #8cc5ff;">
+      <div style="background-color: #8cc5ff;" class="wow animate__animated animate__zoomIn">
         <span
           style=" font-size: 38px;font-weight: bold;text-align: center;display: inline-block; width: 100%;padding: 10px;">
           热门任务推荐
@@ -169,22 +112,53 @@
           </el-col>
         </el-row>
  
+        
 
+                  
       </div>
+     
+      <div class="wow animate__animated animate__zoomIn" >
+        <span
+          style=" font-size: 38px;font-weight: bold;text-align: center;display: inline-block; width: 100%;padding: 10px;">
+          优质服务商
+        </span>
+        <el-row :gutter="10" justify="space-between">
+
+          <el-col :span="6" class="elcol-l2" v-for="item in SchoolList" :key="item.id" style="text-align: center;">
+            <el-card shadow="always">
+              <p style="text-align: left;cursor:pointer;" @click="ToInformationDetail_School(item)">
+                <img :src="item.Logo"
+                  style=" height: 25px;width: 25px;border: 1px solid #99a9bf;border-radius: 50%;display: inline-block;align-content: center;  vertical-align: middle;">
+                  <el-link :underline="false" style="font-size: 16px;">{{ item.Name }}</el-link>
+              </p>
+              <img :src="item.Logo" @click="ToInformationDetail_School(item)"
+                style="cursor:pointer; height: 180px;  margin-top: 8px;  width: 180px;  border: 1px solid #99a9bf;  border-radius: 5px;  align-content: center;  background-color: blueviolet;  display: inline-block;">
+              <p style="color: #606266;">{{ subStr(item.Memo, 12) }}</p>
+              <p style="color: #8c6266;">
+                <i class="el-icon-user-solid"></i>{{ item.LinkMan }}
+              </p>
+              <p style="color: #8c6266;">电话：{{ item.Phote }}</p>
+            </el-card>
+
+          </el-col>
+
+        </el-row>
+      </div>
+
+      
     </el-main>
   </el-container>
 </template>
 
 <script>
 import VueRouter from 'vue-router';
-
+import {WOW} from 'wowjs'  
 export default {
   name: "Index",
   data() {
     return {
       loading: true,
-      imgUrl: '',
-      imgUrl2:'',
+    
       imgQRCode: '',
       SchoolList: [],
       List_KeChengKaiFa:[],
@@ -205,6 +179,7 @@ export default {
     this.imgQRCode = require("@/" + "assets/qrcocedemo.png");
   },
   mounted() {
+     
     this.GetSchoolList();
     this.GetList_KeChengKaiFa();
     this.GetList_XuNiFangZhen();
@@ -212,6 +187,13 @@ export default {
     this.GetList_JiaoXueNengLi();
     this.GetList_ShiXunShiJianShe();
     this.GetList_PPTZhiZuo();
+    this.$nextTick(() => {
+      // 在dom渲染完后,再执行动画
+      const wow = new WOW({
+        live: false
+      }).init()
+     
+    })
     
   },
   methods: {
@@ -408,6 +390,43 @@ export default {
 };
 </script>
 <style scoped>
+.hot_services {
+  background-image: url('../img/thumb-bg.png');
+}
+.showfindIn
+{
+}
+.showfindIn:hover
+{
+  animation: fadeIn 0.5s ease-in-out forwards; /* 悬停时启动动画 */
+}
+.showfindIn:not(:hover) {
+  animation: fadeOut 0.5s ease-in-out forwards; /* 悬停时启动动画 */
+}
+@keyframes fadeIn {
+       from {
+            
+       }
+
+       to {
+           opacity: 1;
+           background-color: #79bbff;
+       }
+   }
+@keyframes fadeOut {
+       from {
+        opacity: 1;
+        background-color: #79bbff;
+       }
+
+       to {
+          
+       }
+   }
+
+
+
+
 .el-popover ul {
   list-style: none;
   padding: 5px;

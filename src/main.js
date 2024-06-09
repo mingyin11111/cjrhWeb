@@ -8,7 +8,7 @@ import ElementUI from 'element-ui'
 import echarts from 'echarts'
 import axios from 'axios'
 import store from './store/index'
- 
+import 'animate.css'
 import 'element-ui/lib/theme-chalk/index.css'
  
 import loading from '@//components/CustomComponets/Organize_Choose.js'   // 自定义组件 选择人员组件
@@ -22,6 +22,7 @@ Vue.use(ElementUI);
 Vue.prototype.$echart=echarts;
 Vue.prototype.$axios=axios;
 Vue.prototype.$store=store;
+
 axios.interceptors.request.use(
   config => {
     

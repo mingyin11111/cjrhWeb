@@ -10,7 +10,7 @@ import "babel-polyfill"
 import loading from '@//components/CustomComponets/Organize_Choose.js'   // 自定义组件 选择人员组件
 Vue.use(loading);                             // 自定义组件 选择人员组件
 
-
+Vue.prototype.$IsWebIndex = '0';
 Vue.use(Router)
 
 const router = new Router({
@@ -210,6 +210,16 @@ const router = new Router({
 // 导航守卫
 // 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
 router.beforeEach((to, from, next) => {
+
+    if(to.path.startsWith('/Web/inde'))
+    {
+      Vue.prototype.$IsWebIndex='1'; // 标记是否为首页
+    }
+    else
+    {
+      Vue.prototype.$IsWebIndex='0';
+    }
+
   if (to.path.startsWith('/Web/')) {
     next();
   }
