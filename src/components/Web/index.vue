@@ -141,7 +141,31 @@
 
         </el-row>
       </div>
+    
+      <div class="wow animate__animated animate__zoomIn" >
+        <span
+          style=" font-size: 38px;font-weight: bold;text-align: center;display: inline-block; width: 100%;padding: 10px;">
+          企事成员
+        </span>
+        <el-row :gutter="10" justify="space-between">
 
+          <el-col :span="6" class="elcol-l2" v-for="item in CompanyList" :key="item.id" style="text-align: center;"> 
+            <el-card shadow="always" style="margin-bottom: 10px;" class="showfindIn">
+              <p style="text-align: left;cursor:pointer;" @click="ToInformationDetail_Company(item)">
+                <img :src="item.Logo"
+                  style="position: absolute; margin-top: 13px; height: 25px;width: 25px;border: 1px solid #99a9bf;border-radius: 50%;display: inline-block;align-content: center;  vertical-align: middle;">
+                  <span   style="display: flex;  align-items: center;   justify-content: left;   height: 50px; width: 80%;margin-left: 35px; ">{{ item.Name }}</span>
+              </p>
+              <p style="color: #8c6266; text-align: left;  padding-left: 33px;">
+                 联系人:{{ item.LinkMan }}
+              </p>
+              <p style="color: #8c6266;text-align: left;  padding-left: 33px;">电话：{{ item.Phote }}</p>
+            </el-card>
+            
+          </el-col>
+
+        </el-row>
+      </div>
       
     </el-main>
   </el-container>
@@ -158,6 +182,7 @@ export default {
     
       imgQRCode: '',
       SchoolList: [],
+      CompanyList: [],
       List_KeChengKaiFa:[],
       List_XuNiFangZhen:[],
       List_WeiKeZhiZuo:[],
@@ -178,6 +203,7 @@ export default {
   mounted() {
      
     this.GetSchoolList();
+    this.GetCompanyList();
     this.GetList_KeChengKaiFa();
     this.GetList_XuNiFangZhen();
     this.GetList_WeiKeZhiZuo();
@@ -355,6 +381,11 @@ export default {
     ToInformationDetail_School(item) {
       this.$router.push({ path: '/Web/InformationPublish/InformationDetail_School', query: { id: item.id } })
     },
+    ToInformationDetail_Company(item) {
+      this.$router.push({ path: '/Web/InformationPublish/InformationDetail_Company', query: { id: item.id } })
+    },
+    //
+    //InformationPublish/InformationDetail_Company?id=7
     ToIneedDetail(item) {
       this.$router.push({ path: '/Web/Need/NeedSubmit', query: { id: item.id } })
     },
@@ -370,6 +401,30 @@ export default {
         .then((res) => {
           if (res.data.err == 0) {
             this.SchoolList = res.data.data.rows;
+            this.loading = false;
+          }
+          else {
+            this.$message.error("错误：" + res.data.err);
+          }
+        })
+        .catch((error) => {
+          this.$message.error("出错！" + error);
+          console.log(error);
+          this.loading = false;
+        });
+    },
+    GetCompanyList() {
+      this.loading = true;
+      var qs = require("qs");
+      this.$axios({
+        method: "get",
+        url: "/api/company?page=1&pageSize=12",
+        data: qs.stringify({
+        }),
+      })
+        .then((res) => {
+          if (res.data.err == 0) {
+            this.CompanyList = res.data.data.rows;
             this.loading = false;
           }
           else {
