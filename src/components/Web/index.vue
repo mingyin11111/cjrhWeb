@@ -131,13 +131,11 @@
                   style=" height: 25px;width: 25px;border: 1px solid #99a9bf;border-radius: 50%;display: inline-block;align-content: center;  vertical-align: middle;">
                   <el-link :underline="false" style="font-size: 16px;">{{ item.Name }}</el-link>
               </p>
-              <img :src="item.Logo" @click="ToInformationDetail_School(item)"
-                style="cursor:pointer; height: 180px;  margin-top: 8px;  width: 180px;  border: 1px solid #99a9bf;  border-radius: 5px;  align-content: center;  background-color: blueviolet;  display: inline-block;">
-              <p style="color: #606266;">{{ subStr(item.Memo, 12) }}</p>
-              <p style="color: #8c6266;">
-                <i class="el-icon-user-solid"></i>{{ item.LinkMan }}
+               
+              <p style="color: #8c6266; text-align: left;  padding-left: 33px;">
+                 联系人:{{ item.LinkMan }}
               </p>
-              <p style="color: #8c6266;">电话：{{ item.Phote }}</p>
+              <p style="color: #8c6266;text-align: left;  padding-left: 33px;">电话：{{ item.Phote }}</p>
             </el-card>
 
           </el-col>
