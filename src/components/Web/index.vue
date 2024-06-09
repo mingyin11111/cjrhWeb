@@ -7,7 +7,7 @@
           style=" font-size: 38px;font-weight: bold;text-align: center;display: inline-block; width: 100%;padding: 10px;">
           热门服务
         </span>
-        <el-row :gutter="10" justify="space-between" style="text-align: center">
+        <el-row :gutter="10" justify="space-between" style="text-align: center;padding-bottom: 10px;">
           <el-col :span="3">
             <el-card shadow="hover" class="showfindIn">
               <div class="zi zi1" style="cursor: pointer;" @click="LinkTo('课程开发')"> </div>
@@ -125,7 +125,7 @@
         <el-row :gutter="10" justify="space-between">
 
           <el-col :span="6" class="elcol-l2" v-for="item in SchoolList" :key="item.id" style="text-align: center;"> 
-            <el-card shadow="always" style="margin-bottom: 10px;">
+            <el-card shadow="always" style="margin-bottom: 10px;" class="showfindIn">
               <p style="text-align: left;cursor:pointer;" @click="ToInformationDetail_School(item)">
                 <img :src="item.Logo"
                   style="position: absolute; margin-top: 13px; height: 25px;width: 25px;border: 1px solid #99a9bf;border-radius: 50%;display: inline-block;align-content: center;  vertical-align: middle;">
