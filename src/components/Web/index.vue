@@ -124,20 +124,19 @@
         </span>
         <el-row :gutter="10" justify="space-between">
 
-          <el-col :span="6" class="elcol-l2" v-for="item in SchoolList" :key="item.id" style="text-align: center;">
-            <el-card shadow="always">
+          <el-col :span="6" class="elcol-l2" v-for="item in SchoolList" :key="item.id" style="text-align: center;"> 
+            <el-card shadow="always" style="margin-bottom: 10px;">
               <p style="text-align: left;cursor:pointer;" @click="ToInformationDetail_School(item)">
                 <img :src="item.Logo"
-                  style=" height: 25px;width: 25px;border: 1px solid #99a9bf;border-radius: 50%;display: inline-block;align-content: center;  vertical-align: middle;">
-                  <el-link :underline="false" style="font-size: 16px;">{{ item.Name }}</el-link>
+                  style="position: absolute; margin-top: 13px; height: 25px;width: 25px;border: 1px solid #99a9bf;border-radius: 50%;display: inline-block;align-content: center;  vertical-align: middle;">
+                  <span   style="display: flex;  align-items: center;   justify-content: left;   height: 50px; width: 80%;margin-left: 35px; ">{{ item.Name }}</span>
               </p>
-               
               <p style="color: #8c6266; text-align: left;  padding-left: 33px;">
                  联系人:{{ item.LinkMan }}
               </p>
               <p style="color: #8c6266;text-align: left;  padding-left: 33px;">电话：{{ item.Phote }}</p>
             </el-card>
-
+            
           </el-col>
 
         </el-row>
@@ -364,7 +363,7 @@ export default {
       var qs = require("qs");
       this.$axios({
         method: "get",
-        url: "/api/school?page=1&pageSize=4",
+        url: "/api/school?page=1&pageSize=12",
         data: qs.stringify({
         }),
       })
