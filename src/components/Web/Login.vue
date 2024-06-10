@@ -78,6 +78,8 @@ export default {
         ...mapMutations(["changeUnitName"]),
         ...mapMutations(["changeUserType"]),
         ...mapMutations(["changeMemberID"]),
+        ...mapMutations(["changeLoginName"]),
+        
         ToPwdLogin() {
             let _this = this;
             if (this.PwdLogin.Name === "" || this.PwdLogin.Pwd === "") {
@@ -103,6 +105,8 @@ export default {
                             _this.changeUnitName( res.data.data.UnitName);
                             _this.changeUserType( res.data.data.UserType);
                             _this.changeMemberID( res.data.data.id);
+                            _this.changeLoginName( res.data.data.LoginName);
+                            
                             this.$message({ message: "登录成功!", type: "success" });
                             _this.$router.push("/Web/index");
                         }

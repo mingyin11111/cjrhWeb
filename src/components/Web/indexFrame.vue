@@ -69,7 +69,7 @@
                                                 <ul>
                                                     <li @click="ToMyCenter">我的需求</li>
                                                     <li @click="ToMyNeedSubmit">我的投标</li>
-                                                    <li>修改密码</li>
+                                                    <li @click="ToChangePwd"> 修改密码</li>
                                                     <li @click="ToLoginOut">注销登录</li>
                                                 </ul>
                                                 <span slot="reference" style="cursor: pointer;">{{
@@ -358,6 +358,11 @@ export default {
         {
             this.$router.push({ path: '/Web/MyCenter/MySubmit' });
         },
+        ToChangePwd()
+        {
+            this.$router.push({ path: '/Web/ChangePWD' });
+        },
+        
         ToLogin() {
             this.$router.push({ path: '/Web/Login' });
         },

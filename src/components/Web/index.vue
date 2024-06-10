@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-main>
+    <el-main style="overflow-x: hidden;">
  
       <div  class="hot_services wow animate__animated animate__zoomIn">
         <span

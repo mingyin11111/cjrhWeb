@@ -28,6 +28,10 @@ const router = new Router({
           component: () => import('@/components/Web/Login'),
         },
         {
+          path: '/Web/ChangePWD',
+          component: () => import('@/components/Web/ChangePWD'),
+        },
+        {
           path: '/Web/Need/NeedList',
           component: () => import('@/components/Web/Need/NeedList'),
         },

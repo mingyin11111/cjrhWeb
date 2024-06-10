@@ -12,7 +12,7 @@ const store = new Vuex.Store({
       UnitName:localStorage.getItem('UnitName') ? localStorage.getItem('UnitName') : '',
       UserType:localStorage.getItem('UserType') ? localStorage.getItem('UserType') : '',
       MemberID:localStorage.getItem('MemberID') ? localStorage.getItem('MemberID') : '',
-    
+      LoginName:localStorage.getItem('LoginName') ? localStorage.getItem('LoginName') : '',
     },
    
     mutations: {
@@ -40,6 +40,10 @@ const store = new Vuex.Store({
       changeMemberID(state, v) {
         state.MemberID = v;
         localStorage.setItem('MemberID', v) ;
+      },
+      changeLoginName(state, v) {
+        state.LoginName = v;
+        localStorage.setItem('LoginName', v) ;
       },
     }
   });
