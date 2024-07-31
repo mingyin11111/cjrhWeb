@@ -36,7 +36,7 @@
                 <el-table-column prop="Type" label="类型"  width="150"> </el-table-column>
                 <el-table-column prop="Content" label="内容"> 
                   <template slot-scope="scope">
-                    {{formatLen(scope.row.Content,130)}}
+                    {{formatLen(stripHtmlTags(scope.row.Content),130)}}
                   </template>
                 </el-table-column>
                 <el-table-column prop="createdAt" label="发布日期"  width="150"> 
@@ -92,6 +92,9 @@
       this.GetList(1);
     },
     methods: {
+      stripHtmlTags(htmlString) {
+      return htmlString.replace(/<[^>]*>?/gm, '');
+    },
       formatDate: function (dt) {
             dt = dt + "";
             if (dt == "" || dt == "null") {
