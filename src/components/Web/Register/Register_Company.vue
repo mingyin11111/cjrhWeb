@@ -462,7 +462,7 @@ export default {
 
 };
 </script>
-<style src="@wangeditor/editor/dist/css/style.css"></style>
+ 
 
 <style scoped>
 .bg-purple-dark {

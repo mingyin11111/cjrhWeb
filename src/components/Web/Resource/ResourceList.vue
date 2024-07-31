@@ -38,7 +38,7 @@
                     </span>
                     <div
                       style="padding-left:10px;height: 85px;  display: inline-block;  width: 100%;   overflow: hidden;  text-overflow: ellipsis; ">
-                      {{ item.Content }}
+                      {{ stripHtmlTags(item.Content) }}
                     </div>
                     <div style="height: 20px;font-size: 14px;padding-left:10px">
                       发布时间：{{ formatDate(item.createdAt) }}
@@ -127,7 +127,9 @@ export default {
     ViewResource(item) {
       this.$router.push({ path: '/Web/Resource/ResourceView', query: { id: item.id } })
     },
-
+     stripHtmlTags(htmlString) {
+      return htmlString.replace(/<[^>]*>?/gm, '');
+    },
     doUpdate() {
       var _this = this;
       var qs = require("qs");
@@ -192,6 +194,7 @@ export default {
             this.pageinfo.PageData = res.data.data.rows;
             this.pageinfo.RecordCount = res.data.data.count;
             this.loading = false;
+
           }
           else {
             this.$message.error("错误：" + res.data.err);

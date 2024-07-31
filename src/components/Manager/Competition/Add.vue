@@ -41,6 +41,7 @@
                                 <el-form-item label="内容" prop="Content" :label-width="formLabelWidth">
                                     <el-input type="textarea" :rows="13" placeholder="请输入简介"
                                         v-model="module.Content"></el-input>
+                                        
                                 </el-form-item>
                                 <el-form-item label="封面图" :label-width="formLabelWidth">
                                     <el-upload class="avatar-uploader" action="/api/upload/fileupload"
@@ -78,10 +79,15 @@
 
 <script>
 import Vue from 'vue'
+import TinymceEditor from '@/components/CustomComponets/TinymceEditor/index'
 //imported directly to your code by require( '@ckeditor/ckeditor5-build-[name]' ).
 
 export default {
     name: "Unit_Company",
+    components:
+    {
+        TinymceEditor,
+    },
     data() {
         return {
             Edit_ModuleID:0,
@@ -327,7 +333,7 @@ export default {
 
 };
 </script>
-<style src="@wangeditor/editor/dist/css/style.css"></style>
+ 
 
 <style scoped>
 .bg-purple-dark {

@@ -202,7 +202,14 @@ export default {
                 }),
             })
                 .then((res) => {
-                    this.downloadFile(res)
+                    if(res.err==500)
+                    {
+                        this.$message.error("出错！" + res.errMsg);
+                    }
+                    else{
+                        this.downloadFile(res)
+                    }
+                    
                 })
                 .catch((error) => {
                     this.$message.error("出错！" + error);

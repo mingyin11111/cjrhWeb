@@ -37,7 +37,14 @@
                   </el-select>
                 </el-form-item>
                 <el-form-item label="内容" prop="Content" :label-width="formLabelWidth">
-                  <el-input type="textarea" :rows="13" placeholder="请输入简介" v-model="module.Content"></el-input>
+                  <template>
+  <div class="tinymce-editor">
+    <template>
+      <editor-vue class="editor" :value="module.Content" @input="(res)=> module.Content = res" ></editor-vue>
+</template>
+ 
+  </div>
+</template>
                 </el-form-item>
                 <el-form-item label="封面图" :label-width="formLabelWidth">
                   <el-upload class="avatar-uploader" action="/api/upload/fileupload" :show-file-list="false"
@@ -63,11 +70,15 @@
 <script>
 import Vue from 'vue'
 //imported directly to your code by require( '@ckeditor/ckeditor5-build-[name]' ).
-
+import editorVue from "@/components/CustomComponets/TinymceEditor/index.vue";
+//import editorVue from "@/components/CustomComponets/TinymceEditor/editor.vue";
 export default {
+  components:{editorVue},
   name: "Unit_Company",
   data() {
     return {
+      dataForm:{lessonDetail:''},
+      lessonDetail:'',
       tokenValue: '',
       pageinfo: { PageSize: 10, CurrentPageNumber: 1, RecordCount: 0, PageData: [] },
       pageSizeOption: [10, 15, 20, 50, 100],
@@ -96,9 +107,9 @@ export default {
   mounted() {
     //this.GetList(1);
     this.tokenValue = localStorage.getItem('Token');
+   
   },
   methods: {
-
     CheckResourceAdd(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -217,7 +228,7 @@ export default {
 
 };
 </script>
-<style src="@wangeditor/editor/dist/css/style.css"></style>
+ 
 
 <style scoped>
 .bg-purple-dark {

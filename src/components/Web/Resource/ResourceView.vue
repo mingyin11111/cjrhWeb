@@ -13,7 +13,7 @@
               发布日期：{{ formatDate(module.createdAt) }}
             </div>
             <div>
-              {{ module.Content }}
+              <div v-html="module.Content"></div>
             </div>
           </el-card>
           <div style="height: 10px;"></div>

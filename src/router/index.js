@@ -227,6 +227,9 @@ router.beforeEach((to, from, next) => {
   if (to.path.startsWith('/Web/')) {
     next();
   }
+  else if (to.path === '/static') {
+    next();
+  } 
  else if (to.path === '/Login') {
     next();
   } else {
