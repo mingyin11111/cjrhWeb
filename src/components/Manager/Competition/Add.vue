@@ -39,9 +39,11 @@
                                     </el-select>
                                 </el-form-item>
                                 <el-form-item label="内容" prop="Content" :label-width="formLabelWidth">
-                                    <el-input type="textarea" :rows="13" placeholder="请输入简介"
-                                        v-model="module.Content"></el-input>
-                                        
+                                        <div class="tinymce-editor">
+                                            <template>
+                                                <editor-vue class="editor" :value="module.Content" @input="(res)=> module.Content = res" ></editor-vue>
+                                            </template>
+                                        </div>
                                 </el-form-item>
                                 <el-form-item label="封面图" :label-width="formLabelWidth">
                                     <el-upload class="avatar-uploader" action="/api/upload/fileupload"
@@ -79,15 +81,11 @@
 
 <script>
 import Vue from 'vue'
-import TinymceEditor from '@/components/CustomComponets/TinymceEditor/index'
-//imported directly to your code by require( '@ckeditor/ckeditor5-build-[name]' ).
+import editorVue from "@/components/CustomComponets/TinymceEditor/index.vue";
 
 export default {
     name: "Unit_Company",
-    components:
-    {
-        TinymceEditor,
-    },
+    components:{editorVue},
     data() {
         return {
             Edit_ModuleID:0,

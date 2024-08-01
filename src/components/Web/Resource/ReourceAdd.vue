@@ -69,9 +69,9 @@
 
 <script>
 import Vue from 'vue'
-//imported directly to your code by require( '@ckeditor/ckeditor5-build-[name]' ).
+ 
 import editorVue from "@/components/CustomComponets/TinymceEditor/index.vue";
-//import editorVue from "@/components/CustomComponets/TinymceEditor/editor.vue";
+ 
 export default {
   components:{editorVue},
   name: "Unit_Company",

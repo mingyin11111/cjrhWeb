@@ -21,7 +21,7 @@
                                  </div>
                             </div>
                             <div>
-                                <div style="padding: 10px; word-break: break-all;">{{ ArticleModel.Content }}</div>
+                                <div style="padding: 10px; word-break: break-all;" v-html="ArticleModel.Content"> </div>
                             </div>
                             <div>
                                 <div style="display: inline-block;margin-left: 5px;">
